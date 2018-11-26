@@ -62,7 +62,7 @@
 							<div class="container-fluid">
   								<div class="row">
     								<div class="col-md-8">
-    									<h1 class="text-center fondGold">La Taverne du vieux Montreuil</h1>
+    									<h1 class="text-center fondGold">La Tavernessss du vieux Montreuil</h1>
     								</div>
     								<div class="col-md-4" id="connect">
     									<div >
