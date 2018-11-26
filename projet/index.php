@@ -47,7 +47,7 @@
 
 	<body id="body">
 
-		<div class="container-fluid">
+		<div>
 			<div class="row justify-content-md-center">
 			<div class="row align-items-start">
    				<div class="col-md-2">
@@ -59,7 +59,7 @@
 						<header id="header">
 
 							
-							<div>
+							<div class="container-fluid">
   								<div class="row">
     								<div class="col-md-8">
     									<h1 class="text-center fondGold">La Taverne du vieux Montreuil</h1>
