@@ -1,0 +1,105 @@
+html{
+	/*background-color : #171b17;*/
+	background-color : #20201f;
+	margin: auto;
+/*	min-width: 1320px;
+	max-width: 1320px;*/
+	/*width: 1480px;*/
+/*	min-height: 960px;
+	max-height: 980px;*/
+	background: url(taverne2.jpg) /*no-repeat*/ center center;
+	background-size: cover all;
+}
+
+/*div{
+	border : 1px solid red;
+}*/
+
+body{
+	background-color : transparent; 
+	/*background-color : #20201f;*/
+}
+
+#milieu{
+	/*background: url(fondvelours.png) no-repeat center center;
+	background-size: cover;*/
+	min-height: 1130px;
+}
+.banniere {
+	width: 100%;
+}
+
+
+#header{
+	/*background-color: #362417;*/
+	/*background-color: #2c2c2c;*/
+	/*background-color: #171b17;*/
+	background: url(fond_header_glod.png) center center;
+	background-size: contain;
+	/*border:2px solid #f1dabf;*/
+	/*border:2px solid #bc9600;*/
+	/*border:2px solid #af8c00;*/
+	border-radius: 15px;
+	font-family: "MathJax_Fraktur";
+	/*color: #ffcc00;*/
+	border : 2px solid gold;
+
+}
+
+header h1{
+	font-size: 4rem;
+}
+.fondGold{
+	color: white;
+	-webkit-background-clip: text;
+	text-shadow: #000000 2px 2px, #000000 -2px 2px, #000000 -2px -2px, #000000 2px -2px;
+
+}
+#connect {
+	float: right;
+}
+
+#recherche {
+	font-size: 1.5rem;
+}
+
+#formconnect {
+	font-size: 1.2rem;
+}
+
+nav {
+	width: 100%;
+	text-align: center;
+	display: inline-flex;
+	border-radius: 15px;
+	padding-bottom: 5px;
+}
+
+nav a {
+	width : 100%;
+	color : white;
+	text-decoration: none;
+	text-align-last: center;
+	font-size: 30px;
+}
+#img {
+	width : 100%;
+}
+
+nav a:hover {
+	border-top: 3px solid #f1dabf;
+	background-color: rgba(220, 220, 220, 0.15);
+	border-radius: 20px;
+	border-bottom: 2px solid #f1dabf;
+
+}
+
+#corps {
+	color: #f1dabf;
+}
+#registerDroit {
+	text-align: right;
+	font-size: 1.3rem;
+}
+
+
