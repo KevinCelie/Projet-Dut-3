@@ -67,14 +67,13 @@ Class Modele_Register extends BDD{
 				$req2 -> execute(array($id, $langage));
 
 				if($req1 == true && $req2 == true) {
-					// self::$DBH->commit();
 					$_SESSION['inscriptionFini'] = true;
 				}else{
-					// self::$DBH -> rollBack();
+					
 					echo "musique et langage CASSEEEEE";
 				}
 			}else{
-				// self::$DBH -> rollBack();
+				
 				echo "ERRRRRRRRRRRRRREEEEEEUUUUUUURRRRRRRRRR";
 			}
 		}else{

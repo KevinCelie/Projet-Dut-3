@@ -7,9 +7,9 @@ Class Modele_Recherche extends BDD{
 
 	}
 
-	public function effectuerRecherche(){
+	public function effectuerRecherche($recherche){
 		$req = self::$DBH -> prepare("select * from Utilisateur where nom = ? or prenom = ?");
-		$req -> execute(array($_SESSION['login'] ));
+		$req -> execute(array($recherche, $recherche));
 		return $req;
 	}
 
@@ -20,13 +20,5 @@ Class Modele_Recherche extends BDD{
 	public function getTable(){
 		return self::$DBH -> query("select * from php.profil;");
 	}
-
-	public function ajout($nom) {
-
-		$req = self::$DBH -> prepare ("insert into php.profil values (default, ?)");
-		$req -> execute(array($nom));
-	}
-
-
 }
 ?>
