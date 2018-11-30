@@ -96,5 +96,9 @@ Class Modele_Register extends BDD{
 		$langage = self::$DBH -> query("select * from Langage;");
 		return $langage;
 	}
+
+	public function modifPass(){
+		
+	}
 }
 ?>

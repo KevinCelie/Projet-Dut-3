@@ -46,5 +46,13 @@ Class Controleur_Register{
 	    $this -> vue -> deconnexion();
 	    //header('Location: index.php?module=connexion');
    }
+
+   public function modifPass(){
+      $this -> vue -> affichModifPass();
+   }
+
+   public function resultModifPass(){
+      $this -> modele -> modifPass();
+   }
 }
 ?>
