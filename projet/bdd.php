@@ -9,7 +9,7 @@ Class BDD{
   //       );
 
 		try {
-			self::$bdd='mysql:host=tvm.aop.ovh; dbname=dutinfopw201639';
+			self::$bdd='mysql:host=localhost; dbname=dutinfopw201639';
 			$user = 'root';
 			$password = 'qeruneqy42';
    			self::$DBH = new PDO(self::$bdd, $user, $password/*, $option*/);
