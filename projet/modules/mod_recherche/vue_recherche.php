@@ -14,6 +14,18 @@ Class Vue_Recherche{
       </form>
       ";
    }
+
+   public function affichePageRecherche($req) {
+      while(($line = $req->fetch()) !== false)
+      {
+         echo 
+         "
+            <div class='row'>
+               <a>" . $line['nom'] . " " . $line['prenom'] . "</a>
+            </div>
+         ";
+      }
+   }
    
 }
 ?>

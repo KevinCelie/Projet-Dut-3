@@ -17,8 +17,11 @@ Class Controleur_Recherche{
    }
 
    public function affiche_page_recherche() {
-      if (isset($_POST['champRecherche']))
-      $this -> modele -> effectuerRecherche();
+      if (isset($_POST['champRecherche'])) {
+         $req = $this -> modele -> effectuerRecherche($_POST['champRecherche']);
+         $this -> vue -> affichePageRecherche($req);
+      }
+         
    }
 
    // public function affiche_profil(){
