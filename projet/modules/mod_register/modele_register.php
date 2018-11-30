@@ -110,6 +110,7 @@ Class Modele_Register extends BDD{
 
 			if($req == true){
 				mail("rauriac@iut.univ-paris8.fr", "YEYY", "YYYETTTT");
+				return true;
 			}else{
 				return false;
 			}
