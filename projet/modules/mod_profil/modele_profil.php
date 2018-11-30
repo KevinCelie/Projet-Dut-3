@@ -8,7 +8,7 @@ Class Modele_Profil extends BDD{
 	}
 
 	public function getProfil(){
-		$req = self::$DBH -> prepare("select * from Utilisateur inner join maitrise using (idUtilisateur) where Utilisateur.idUtilisateur = ?");
+		$req = self::$DBH -> prepare("select * from Utilisateur inner join maitrise using (idUtilisateur) inner join ecoute using(idUtilisateur) where Utilisateur.idUtilisateur = ?");
 		$req -> execute(array($_SESSION['login'] ));
 		return $req;
 	}

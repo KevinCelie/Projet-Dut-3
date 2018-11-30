@@ -56,6 +56,28 @@ Class Vue_Profil{
             echo "</div>";
          echo "</div>";
 
+         echo "<div class='row ProfilRow'>";
+            echo "<div id='ProfilLangage'>";
+               echo "<div class='ProfilNomChamp'>";
+                  echo "Langage de prédilection:";
+               echo "</div>";
+               echo "<div class='ProfilChamp'>";
+                  echo $line['langage'];
+               echo "</div>";
+            echo "</div>";
+         echo "</div>";
+
+         echo "<div class='row ProfilRow'>";
+            echo "<div id='ProfilMusique'>";
+               echo "<div class='ProfilNomChamp'>";
+                  echo "Style de Musique :";
+               echo "</div>";
+               echo "<div class='ProfilChamp'>";
+                  echo $line['musique'];
+               echo "</div>";
+            echo "</div>";
+         echo "</div>";
+
       echo "</div>" ;
    }
 
