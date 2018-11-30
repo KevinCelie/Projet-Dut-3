@@ -1,5 +1,5 @@
 <?php
-phpinfo();
+//phpinfo();
 include_once 'bdd.php';
 
 Class Modele_Register extends BDD{
@@ -110,7 +110,7 @@ Class Modele_Register extends BDD{
 			$req -> execute(array($token ,$_POST['email']));
 
 			if($req == true){
-				mail("rauriac@iut.univ-paris8.fr", "YEYY", "YYYETTTT");
+				mail("rauriac@iut.univ-paris8.fr", "YEYY", "Pour changer votre mot de passe cliquez sur ce lien : ");
 				return true;
 			}else{
 				return false;
