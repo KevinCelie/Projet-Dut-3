@@ -12,8 +12,8 @@ Class Vue_Connexion{
    public function formulaire() {
       echo  "<form method='post' action='index.php?module=connexion&action=connexion' id='connect'>
                <div id='formconnect'>
-                 <label id='fondGold' id='id'>Adresse Mail</label> <input type='text' name='id' class='champconnect'/> <br/>
-                 <label id='fondGold' id='id'>Mot de passe</label> <input type='password' name='mdp' class='champconnect' /> <br/>
+                 <label class='FormConnectChamp' id='id'>Adresse Mail</label> <input type='text' name='id' class='champconnect'/> <br/>
+                 <label class='FormConnectChamp' id='id'>Mot de passe</label> <input type='password' name='mdp' class='champconnect' /> <br/>
                  <input type='submit' value='Valider' class='btn btn_outline_primary'/><br/>
                </div>
             </form>";
