@@ -47,12 +47,13 @@ Class Controleur_Register{
 	    //header('Location: index.php?module=connexion');
    }
 
-   public function modifPass(){
+   public function afficheModifPass(){
       $this -> vue -> affichModifPass();
    }
 
    public function resultModifPass(){
-      $this -> modele -> modifPass();
+      $result = $this -> modele -> modifPass();
+      $this -> vue -> afficheResultModifPass($result);
    }
 }
 ?>

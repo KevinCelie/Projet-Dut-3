@@ -26,7 +26,7 @@ class ModRegister {
 				break;
 
 			case "modifPass" : 
-				$this -> controleur -> modifPass();
+				$this -> controleur -> afficheModifPass();
 				break;
 
 			case "resultModifPass" : 

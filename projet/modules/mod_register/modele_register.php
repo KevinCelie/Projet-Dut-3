@@ -99,7 +99,27 @@ Class Modele_Register extends BDD{
 	}
 
 	public function modifPass(){
-		
+		$token = rand(0,999);
+		$req = self::$DBH -> prepare("select adresseMail from Identification where adresseMail = ?");
+		$req -> execute(array($_POST['email']));
+		$test = $req -> fetch();
+
+		if($test == true){		
+			$req = self::$DBH -> prepare("UPDATE Identification SET resetToken = ? where adresseMail = ?");
+			$token = crypt($token, "Changepassword");
+			$req -> execute(array($token ,$_POST['email']));
+
+			if($req == true){
+				mail("rauriac@iut.univ-paris8.fr", "YEYY", "YYYETTTT");
+				return true;
+
+			}else{
+				return false;
+			}
+
+		}else{
+			return false;
+		}
 	}
 }
 ?>

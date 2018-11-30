@@ -110,6 +110,14 @@ Class Vue_Register{
         </form>
       ";
    }
+
+   public function afficheResultModifPass($result){
+      if($result){
+        echo "Un E-Mail de changement de mot de passe a été envoyé";
+      }else{
+        echo "L'adresse saisie est éronnée";
+      }
+   }
 }
 ?>
 

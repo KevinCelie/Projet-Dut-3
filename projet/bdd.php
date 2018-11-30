@@ -9,9 +9,9 @@ Class BDD{
   //       );
 
 		try {
-			self::$bdd='mysql:host=localhost; dbname=dutinfopw201639';
-			$user = 'root';
-			$password = 'qeruneqy42';
+			self::$bdd='mysql:host=database-etudiants.iut.univ-paris8.fr; dbname=dutinfopw201639';
+			$user = 'dutinfopw201639';
+			$password = 'qeruneqy';
    			self::$DBH = new PDO(self::$bdd, $user, $password/*, $option*/);
  		} catch (PDOException $e) {
    			echo 'Connexion échouée : ' . $e->getMessage();
