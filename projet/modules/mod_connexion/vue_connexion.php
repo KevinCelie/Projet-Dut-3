@@ -15,6 +15,7 @@ Class Vue_Connexion{
                  <label class='FormConnectChamp' id='id'>Adresse Mail</label> <input type='text' name='id' class='champconnect'/> <br/>
                  <label class='FormConnectChamp' id='id'>Mot de passe</label> <input type='password' name='mdp' class='champconnect' /> <br/>
                  <input type='submit' value='Valider' class='btn btn_outline_primary'/><br/>
+                 <a href='index.php?module=register&action=modifPass'>Réinitialiser votre mot de passe.</a>
                </div>
             </form>";
    }

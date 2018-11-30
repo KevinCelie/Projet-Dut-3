@@ -25,6 +25,14 @@ class ModRegister {
 				$this -> controleur -> registerInfoSupp();
 				break;
 
+			case "modifPass" : 
+				$this -> controleur -> modifPass();
+				break;
+
+			case "resultModifPass" : 
+				$this -> controleur -> resultModifPass();
+				break;
+
 			default :
 				// $this -> controleur -> affiche_bienvenue();
 				if(!isset($_SESSION['login'])){

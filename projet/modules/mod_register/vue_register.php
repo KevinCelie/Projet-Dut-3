@@ -17,15 +17,15 @@ Class Vue_Register{
     $this -> miseEnPage();
       echo  "<form method='post' action='index.php?module=register&action=formulaire' id='register'>
               <div class='form-group'>
-                 <label id='id'>Adresse-Mail</label> 
+                 <label id='id' for='champid'>Adresse-Mail</label> 
                  <input type='mail' name='id' id='champid'/> 
               </div>
               <div class='form-group'>
-                 <label id='mdp'>Mot de passe</label> 
+                 <label id='mdp' for='champmdp'>Mot de passe</label> 
                  <input type='password' name='mdp' id='champmdp' /> 
               </div>
               <div class='form-group'>
-                 <label id='mdp2'>Confirmer Mot de passe</label> 
+                 <label id='mdp2' for='champmdp'>Confirmer Mot de passe</label> 
                  <input type='password' name='mdp2' id='champmdp'/> 
               </div>
                  <input type='submit' value='Valider' id='valider'/>
@@ -99,6 +99,16 @@ Class Vue_Register{
       echo  "<form method='post' action='index.php?module=connexion&action=deconnexion'>
              <input type='submit' value='deconnexion'/>
             </form>";
+   }
+
+   public function affichModifPass(){
+      echo"
+        <form method='post' action='index.php?module=register&action=resultModifPass'>
+          <label for='email' class='font-weight-bold'>Votre E-mail :</label></br>
+          <input id='email' type='text' name='email'/>
+          <input type='submit' value='Valider'/>
+        </form>
+      ";
    }
 }
 ?>
