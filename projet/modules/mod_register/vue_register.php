@@ -1,5 +1,4 @@
 <?php
-phpinfo();
 Class Vue_Register{
    public function __construct () {
   
