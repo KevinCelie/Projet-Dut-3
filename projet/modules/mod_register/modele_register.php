@@ -110,7 +110,43 @@ Class Modele_Register extends BDD{
 			$req -> execute(array($token ,$_POST['email']));
 
 			if($req == true){
-				mail("rauriac@iut.univ-paris8.fr", "YEYY", "Pour changer votre mot de passe cliquez sur ce lien : ");
+				//require_once("/usr/share/php/libphp-phpmailer/class.phpmailer.php");
+				require_once("/usr/share/php/libphp-phpmailer/PHPMailerAutoload.php");
+				$mail = new PHPmailer();
+
+
+				$mail->isSMTP(); // Paramétrer le Mailer pour utiliser SMTP 
+				$mail->Host = 'smtp.gmail.com'; // Spécifier le serveur SMTP
+				$mail->SMTPAuth = true; // Activer authentication SMTP
+				$mail->Username = 'ltdvm93@gmail.com'; // Votre adresse email d'envoi
+				$mail->Password = 'qeruneqy42'; // Le mot de passe de cette adresse email
+				$mail->SMTPSecure = false; // Accepter SSL
+				$mail->SMTPAutoTLS = false;
+				$mail->Port = 587;
+
+				$mail->setFrom('ltdvm93@gmail.com', 'First Last'); // Personnaliser l'envoyeur
+				$mail->addAddress('rafi01081999@gmail.com', 'Rafael'); // Ajouter le destinataire
+				//$mail->addAddress('To2@example.com'); 
+				//$mail->addReplyTo('info@example.com', 'Information'); // L'adresse de réponse
+				//$mail->addCC('cc@example.com');
+				//$mail->addBCC('bcc@example.com');
+
+				//$mail->addAttachment('/var/tmp/file.tar.gz'); // Ajouter un attachement
+				//$mail->addAttachment('/tmp/image.jpg', 'new.jpg'); 
+				//$mail->isHTML(false); // Paramétrer le format des emails en HTML ou non
+
+				$mail->Subject = 'Here is the subject';
+				$mail->Body = 'Pour changer votre mot de passe cliquez sur ce lien : ';
+				$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+				if(!$mail->Send()) {
+				    $mensagemRetorno = 'Error: '. print($mail->ErrorInfo);
+				    echo $mensagemRetorno;
+				} else {
+				    $mensagemRetorno = 'E-mail sent!';
+				    echo $mensagemRetorno;
+				}
+
 				return true;
 			}else{
 				return false;
