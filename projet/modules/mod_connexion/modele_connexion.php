@@ -1,5 +1,5 @@
 <?php
-include_once '../../../../../home/kcelie/bdd.php';
+include_once '../../bdd.php';
 
 Class Modele_Connexion extends BDD{
 
