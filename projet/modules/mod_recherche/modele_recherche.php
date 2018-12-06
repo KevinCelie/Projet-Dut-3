@@ -1,5 +1,5 @@
 <?php
-include_once 'bdd.php';
+include_once '~/bdd.php';
 
 Class Modele_Recherche extends BDD{
 
