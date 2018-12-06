@@ -51,7 +51,7 @@
 			<div class="row justify-content-md-center">
 			<div class="row align-items-start">
    				<div class="col-md-2">
- 				     <img src="banniere1.png" class="banniere">
+ 				     <img src="banniere.png" class="banniere">
  			   	</div>
 
  			   	<div class="col-md-8" id = "milieu">
@@ -119,7 +119,7 @@
   				</div>
 
 			    <div class="col-md-2">
-      				<img src="banniere1.png" class="banniere">
+      				<img src="banniere.png" class="banniere">
  			 	</div>
 
  			</div>
