@@ -28,6 +28,10 @@ Class Controleur_Profil{
    	$this -> vue -> afficheProfil($req);
    }
 
+   public function ajout_Ami($id){
+      $this -> modele -> ajout_Ami($id);
+   }
+
    //fonction Ajout de profil
    public function formulaire(){
       $this -> vue -> formulaire();

@@ -7,8 +7,15 @@ Class Vue_Profil{
       $line = $req->fetch(); 
       echo "<div class='container' id='afficheProfil'>";
          echo "<div class='row ProfilRow'>";
-            echo "<div class='ProfilChamp' id='NomPrenom'>";
-               echo $line['nom']."  ".$line['prenom'];
+            echo "<div class='ProfilChamp row'>";
+               if($_SESSION['login'] == $line['idUtilisateur']){
+                  echo "<div class='col-8' id='NomPrenom'>";
+                     echo $line['nom']."  ".$line['prenom'];
+                  echo "</div>";
+               }else{
+                  echo "<div class='col-8' id='NomPrenom'>";
+                  echo $line['nom']."  ".$line['prenom']."</div><div class='col-4 text-nowrap'><a id='ajouterAmiButton' href='index.php?module=profil&action=ami&id=".$line['idUtilisateur']."'>Ajouter en Ami</a></div>";
+               }    
             echo "</div>";
          echo "</div>";
 
@@ -84,7 +91,3 @@ Class Vue_Profil{
    
 }
 ?>
-
-<div class ="row">
-
-</div>

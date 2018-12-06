@@ -20,9 +20,9 @@ Class Vue_Recherche{
       {
          echo 
          "  
-            nerbfienf
             <div class='row'>
                <a href='index.php?module=profil&nom=".$line['nom']."'>" . $line['nom'] . " " . $line['prenom'] . "</a>
+
             </div>
          ";
       }

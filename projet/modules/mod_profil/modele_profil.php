@@ -38,6 +38,18 @@ Class Modele_Profil extends BDD{
 		$req -> execute(array($nom));
 	}
 
+	public function ajout_Ami($id){
+		$reqSelect = self::$DBH -> prepare("select * from sontAmis where idUtilisateur = ? and idUtilisateur_sontAmis = ?");
+		$reqSelect -> execute(array($id, $_SESSION['login']));
+		$line = $reqSelect -> fetch();
+			if ($line == true) {
+				$reqUpdate = self::$DBH -> prepare("UPDATE sontAmis SET sontAmis = 1 where idUtilisateur = ? and idUtilisateur_sontAmis = ?");
+				$reqUpdate -> execute(array($id,$_SESSION['login']));
+			}else{
+				$reqInsert = self::$DBH -> prepare("INSERT INTO sontAmis VALUES (?,?,0)");
+				$reqInsert -> execute(array($_SESSION['login'], $id));
+			}
+	}
 
 }
 ?>

@@ -18,7 +18,8 @@ Class Modele_Register extends BDD{
 			$username = $_POST['id'];
 			$password = crypt($_POST['mdp'], "admin");
 
-			$req = self::$DBH -> query("insert into Identification values(DEFAULT, '" . $username . "', '" . $password ."')");
+			$req = self::$DBH -> prepare("insert into Identification values(DEFAULT, ?, ?, NULL)");
+			$req -> execute(array($username, $password));
 
 			if ($req == true) {
 				$req1 = self::$DBH -> prepare ("select idUtilisateur from Identification where adresseMail=?");
