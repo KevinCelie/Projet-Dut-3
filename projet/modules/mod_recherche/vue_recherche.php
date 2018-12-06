@@ -19,9 +19,10 @@ Class Vue_Recherche{
       while(($line = $req->fetch()) !== false)
       {
          echo 
-         "
+         "  
+            nerbfienf
             <div class='row'>
-               <a>" . $line['nom'] . " " . $line['prenom'] . "</a>
+               <a href='index.php?module=profil&nom=".$line['nom']."'>" . $line['nom'] . " " . $line['prenom'] . "</a>
             </div>
          ";
       }

@@ -23,8 +23,8 @@ Class Controleur_Profil{
    	}
    }
    */
-   public function affiche_profil(){
-      $req = $this -> modele -> getProfil();
+   public function affiche_profil($nom){
+      $req = $this -> modele -> getProfil($nom);
    	$this -> vue -> afficheProfil($req);
    }
 

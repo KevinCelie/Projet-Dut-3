@@ -15,10 +15,16 @@ Class ModProfil{
 		}else {
 			$action = 'menu';
 		}
+		if(isset($_GET['nom'])){
+			$nom = $_GET['nom'];
+		}
+		else{
+			$nom = null;
+		}
 
 		switch($action){
 			default :
-				$this -> c -> affiche_profil();
+				$this -> c -> affiche_profil($nom);
 				break;
 
 		}
