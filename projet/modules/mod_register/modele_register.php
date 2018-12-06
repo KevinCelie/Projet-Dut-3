@@ -1,6 +1,6 @@
 <?php
 //phpinfo();
-include_once 'bdd.php';
+include_once '../../../../../home/kcelie/bdd.php';
 
 Class Modele_Register extends BDD{
 
