@@ -23,9 +23,23 @@ Class Controleur_Profil{
    	}
    }
    */
-   public function affiche_profil($id){
-      $req = $this -> modele -> getProfil($id);
-   	$this -> vue -> afficheProfil($req);
+   // public function affiche_profil($id){
+   //    $req = $this -> modele -> getProfil($id);
+   //    $req2 = $this -> modele -> getAmi($id);
+   // 	$this -> vue -> afficheProfil($req, $req2);
+   // }
+
+   public function affiche_profil(){
+      $args = func_get_args();
+      if(count($args) == 0){
+         $req = $this -> modele -> getProfil($_SESSION['login']);
+         $req2 = $this -> modele -> getAmi();
+      }
+      else {
+         $req = $this -> modele -> getProfil($args[0]);
+         $req2 = $this -> modele -> getAmi($args[0]);
+      }
+      $this -> vue -> afficheProfil($req, $req2);
    }
 
    public function ajout_Ami($id){
