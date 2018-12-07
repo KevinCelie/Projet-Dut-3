@@ -6,11 +6,9 @@ Class Vue_Recherche{
    public function afficheRecherche(){
       echo 
       "
-      <form method='post' action='index.php?module=recherche&recherche=true' id='recherche'>
-         <div class='form-group'>
-            <label for='champRecherche' class='fondGold' > Rechercher </label> 
-            <input type='text' name='champRecherche' id='champRecherche' class='form-control'/> 
-         </div>
+      <form class='form-inline my-2 my-lg-0' action='index.php?module=recherche&recherche=true' method='post'>
+         <input class='form-control mr-sm-2' type='text' placeholder='Search' aria-label='Search' name='champRecherche'>
+         <button class='btn btn-outline-success my-2 my-sm-0' type='submit'>Search</button>
       </form>
       ";
    }

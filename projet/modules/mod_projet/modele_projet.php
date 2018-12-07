@@ -1,0 +1,73 @@
+<?php
+include_once '../../bdd.php';
+
+Class Modele_Projet extends BDD{
+
+    public function __construct(){
+
+    }
+
+    // public function effectuerProjet($recherche){
+    // 	$req = self::$DBH -> prepare("select * from Utilisateur where nom = ? or prenom = ?");
+    // 	$req -> execute(array($recherche, $recherche));
+    // 	return $req;
+    // }
+
+    // public function initConnexion(){
+    // 	$this ->connexion();
+    // }
+
+    public function getProjet($id){
+        $req = self::$DBH -> prepare("SELECT COUNT(idProjet) AS num FROM appartientProjet where idProjet = ?");
+        $reussi = $req -> execute(array($id));
+        if ($reussi == true) {
+            $line = $req -> fetch();
+            if ($line['num'] > 0) {
+                $req = self::$DBH -> prepare("select * from appartientProjet inner join Projet using(idProjet) where idProjet = ?");
+                $req -> execute(array($id));
+                return $req;
+            }
+        }
+        else return null;
+    }
+
+    public function creation_quete(){
+        if (isset($_POST['champProjet']) 
+            && isset($_POST['champDesc']) 
+            && isset($_POST['champPrive'])) {
+
+                $id = $_SESSION['login'];
+                $titre = $_POST['champProjet'];
+                $desc = $_POST['champDesc'];
+                $prive = $_POST['champPrive'];
+                $git = null;
+                
+                $req = self::$DBH -> prepare("insert into Projet values (DEFAULT, ?, ?, ?, NULL)");
+                $req -> execute(array($titre, $desc, $prive));
+                
+                if($req == true) {
+                    $req2 = self::$DBH -> prepare("select * from Projet where projet = ? and projetDescription = ?");
+                    $req2 -> execute(array($titre, $desc));
+                    
+                    $line = $req2 -> fetch();
+                    
+                    $req3 = self::$DBH -> prepare("insert into appartientProjet values (?,?,True)");
+                    $req3 -> execute(array($line['idProjet'], $_SESSION['login']));
+                    
+                    if($req3 == true) {
+                        echo "reussi";
+                    }
+                    else{
+                        echo "echec";
+                    }
+                }
+                else{
+                    echo "pb Champs";
+                }
+
+
+            }
+        }
+
+     }
+?>
