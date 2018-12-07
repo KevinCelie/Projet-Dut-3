@@ -67,6 +67,7 @@ window.width = 1080px;
                                         <div class="col-md-4" id="connect">
                                             <div >
                                                 <?php
+                                                ob_start();
                                                 $modConnexion = new ModConnexion();
 
                                                 ?>
@@ -120,6 +121,7 @@ window.width = 1080px;
                                             break;
                                     }
                                 }
+                                ob_end_flush();
                                 ?>
                             </div>
                         
