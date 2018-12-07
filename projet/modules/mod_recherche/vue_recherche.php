@@ -21,7 +21,7 @@ Class Vue_Recherche{
          echo 
          "  
             <div class='row'>
-               <a href='index.php?module=profil&nom=".$line['nom']."'>" . $line['nom'] . " " . $line['prenom'] . "</a>
+               <a href='index.php?module=profil&id=".$line['idUtilisateur']."'>" . $line['nom'] . " " . $line['prenom'] . "</a>
 
             </div>
          ";

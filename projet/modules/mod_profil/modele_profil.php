@@ -7,13 +7,13 @@ Class Modele_Profil extends BDD{
 
 	}
 
-	public function getProfil($nom){
-		if ($nom == null) {
+	public function getProfil($id){
+		if ($id == null) {
 			$id = $_SESSION['login'];
 		}
 		else {
-			$reqChercheId = self::$DBH -> prepare("select * from Utilisateur where nom = ?");
-			$reqChercheId -> execute(array($nom));
+			$reqChercheId = self::$DBH -> prepare("select * from Utilisateur where idUtilisateur = ");
+			$reqChercheId -> execute(array($id));
 			$line = $reqChercheId -> fetch();
 			if ($line == true) {
 				$id = $line['idUtilisateur'];
@@ -49,6 +49,7 @@ Class Modele_Profil extends BDD{
 				$reqInsert = self::$DBH -> prepare("INSERT INTO sontAmis VALUES (?,?,0)");
 				$reqInsert -> execute(array($_SESSION['login'], $id));
 			}
+			header("Location:index.php?module=profil&id=".$id);
 	}
 
 }

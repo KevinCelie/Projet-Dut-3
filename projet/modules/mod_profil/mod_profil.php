@@ -15,11 +15,11 @@ Class ModProfil{
 		}else {
 			$action = 'menu';
 		}
-		if(isset($_GET['nom'])){
-			$nom = $_GET['nom'];
+		if(isset($_GET['id'])){
+			$id = $_GET['id'];
 		}
 		else{
-			$nom = null;
+			$id = null;
 		}
 
 		switch($action){
@@ -27,7 +27,7 @@ Class ModProfil{
 				$this -> c -> ajout_Ami($_GET['id']);
 				break;
 			default :
-				$this -> c -> affiche_profil($nom);
+				$this -> c -> affiche_profil($id);
 				break;
 
 		}

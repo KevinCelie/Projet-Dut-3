@@ -39,7 +39,6 @@ body{
 	/*border:2px solid #f1dabf;*/
 	/*border:2px solid #bc9600;*/
 	/*border:2px solid #af8c00;*/
-	font-family: "MathJax_Fraktur";
 	/*color: #ffcc00;*/
     background-color: rgb(0,0,0,0.8);
     border-bottom-left-radius: 20px;
@@ -62,7 +61,7 @@ header h1{
 	color: white;
 	-webkit-background-clip: text;
 	text-shadow: #000000 2px 2px, #000000 -2px 2px, #000000 -2px -2px, #000000 2px -2px;
-
+	font-family: "MathJax_Fraktur";
 }
 
 .FormConnectChamp{
