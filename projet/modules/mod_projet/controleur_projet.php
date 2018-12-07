@@ -18,7 +18,7 @@ Class Controleur_Projet{
             $action = $_GET['action'];
         }
         /*Si aucun projet n'est spécifié alors on retourne sur la page de creation*/
-        if(!isset($_GET['projet'])) {
+        if(!isset($_GET['projet']) && action == "affiche") {
             $action = null;
         }
         
