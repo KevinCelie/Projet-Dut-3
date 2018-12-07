@@ -64,7 +64,7 @@ Class Vue_Navbar{
         else{
             echo"
                 <li class='nav-item'>
-                    <a class='nav-link' href='index.php?module=projet'>Quêtes</a>
+                    <a class='nav-link nav-border-white' href='index.php?module=projet'>Quêtes</a>
                 </li>";
         }
         echo " 
