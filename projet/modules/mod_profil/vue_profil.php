@@ -3,28 +3,57 @@ Class Vue_Profil{
    public function __construct () {
    }
 
-   public function afficheProfil($req, $req2){
-      $line = $req->fetch(); 
-      $line2 = $req2->fetch();
-      echo "<div class='container' id='afficheProfil'>";
-         echo "<div class='row ProfilRow'>";
-            echo "<div class='ProfilChamp row'>";
-               echo "<div class='col-8' id='NomPrenom'>";
-                  echo $line['nom']."  ".$line['prenom']." ";
-               echo "</div>";
-               if($_SESSION['login'] != $line['idUtilisateur']){
-                  if($line2 == False){
-                     echo "<div class='col-4 text-nowrap'><a id='ajouterAmiButton' href='index.php?module=profil&action=ami&id=".$line['idUtilisateur']."'> Ajouter en Ami </a></div>";
-                  }else{
-                     if($line2['sontAmis'] == 0){
-                        if($line2['idUtilisateur'] == $_SESSION['login']){
-                           echo "<div class='col-4 text-nowrap'><a id='ajouterAmiButton'> Demande envoyée </a></div>";
-                        }else{
-                           echo "<div class='col-4 text-nowrap'><a id='ajouterAmiButton' href='index.php?module=profil&action=ami&id=".$line['idUtilisateur']."'> Accepter la demande </a></div>";
+    public function afficheProfil(){
+        $args = func_get_args();
+        $line = $args[0]->fetch(); 
+        echo "<div class='container' id='afficheProfil'>
+                <div class='row ProfilRow'>
+                    <div class='ProfilChamp row'>
+                        <div class='col-8' id='NomPrenom'>";
+        echo                $line['nom']."  ".$line['prenom']." ";
+        echo            "</div>";
+       
+        if($_SESSION['login'] != $line['idUtilisateur']){
+            $line2 = $args[1]->fetch();
+            if($line2 == False){
+                
+                echo "  <div class='col-4 text-nowrap'>
+                            <a id='ajouterAmiButton' href='index.php?module=profil&action=ami&id=".$line['idUtilisateur']."'> Ajouter en Ami </a>
+                        </div>";
+                
+            }else{
+                if($line2['sontAmis'] == 0){
+                    if($line2['idUtilisateur'] == $_SESSION['login']){
+                        
+                        echo "
+                        <div class='col-4 text-nowrap'>
+                            <a id='ajouterAmiButton'> Demande envoyée </a>
+                        </div>";
+                        
+                    }else{
+                        echo "
+                        <div class='col-4 text-nowrap'>
+                            <a id='ajouterAmiButton' href='index.php?module=profil&action=ami&id=".$line['idUtilisateur']."'> Accepter la demande </a>
+                        </div>";
+                    }
+                }else {
+                    if($args[2] == True) {
+                        echo "
+                        <div class='dropdown'>
+                            <button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                                Inviter à une quête
+                            </button>
+                            <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>";
+                        while(($quete =$args[2] -> fetch()) !=False ) {
+                            echo "<a class='dropdown-item' href='index.php?module=projet&action=invite&projet=". $quete['idProjet'] ."&profil=" . $line['idUtilisateur'] . "'>" . $quete['projet'] . "</a>";
                         }
-                     }
-                  }
-               }   
+                        echo"</div>
+                        </div>";
+                    }
+                }
+            }
+        }
+                  
             echo "</div>";
          echo "</div>";
 

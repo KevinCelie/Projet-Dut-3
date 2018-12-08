@@ -15,7 +15,8 @@ Class Controleur_Navbar{
     public function affiche_navbar(){
         if(isset($_SESSION['inscriptionFini'])){
             $req = $this -> modele -> getQuete();
-            $this -> vue -> affiche_navbar($req);
+            $req2 = $this -> modele -> getRequeteQuete();
+            $this -> vue -> affiche_navbar($req,$req2);
         }else
             $this -> vue -> affiche_navbar();
     }
@@ -26,24 +27,6 @@ Class Controleur_Navbar{
 
     }
 
-    // public function affiche_profil(){
-    //    $req = $this -> modele -> getProfil();
-    // 	$this -> vue -> afficheProfil($req);
-    // }
-
-    // //fonction Ajout de profil
-    // public function formulaire(){
-    //    $this -> vue -> formulaire();
-    // }
-    // public function ajout() {
-
-    //    if(isset($_POST['truc']) && trim($_POST['truc']) != ''){
-    //       $nomprofil = trim(htmlspecialchars($_POST['truc']));
-    //       $this -> modele -> ajout($nomprofil);
-
-    //    }
-    //    header('Location: index.php?module=profil&action=liste');
-    // }
 
 }
 ?>

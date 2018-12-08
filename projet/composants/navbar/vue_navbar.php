@@ -56,6 +56,14 @@ Class Vue_Navbar{
             }
             echo "
                         <div class='dropdown-divider'>
+                        </div>";
+            
+            while(($line =  $args[1] -> fetch()) != false) {
+                echo"
+                        <a class='dropdown-item' href='index.php?module=projet&action=accepte&projet=". $line['idProjet'] ."&profil=" . $_SESSION['login'] . "'>" . $line['projet'] . "<span class='badge badge-secondary'>Invitation</span></a>";
+            }
+            echo "
+                        <div class='dropdown-divider'>
                         </div>
                         <a class='dropdown-item' href='index.php?module=projet'>Créer une nouvelle quête</a>
                     </div>

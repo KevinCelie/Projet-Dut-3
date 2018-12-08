@@ -41,6 +41,12 @@ Class Modele_Profil extends BDD{
 		}
 		return $req;
 	}
+    
+    public function getMesQuetes(){
+        $req = self::$DBH -> prepare("select * from appartientProjet inner join Projet using(idProjet) where idUtilisateur = ?");
+        $req -> execute(array($_SESSION['login']));
+        return $req;
+    }
 
 	public function initConnexion(){
 		$this ->connexion();
