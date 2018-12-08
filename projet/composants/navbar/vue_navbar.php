@@ -3,7 +3,7 @@ Class Vue_Navbar{
     public function __construct () {
     }
 
-    public function afficheProjet(){
+    /*public function afficheProjet(){
         echo 
             "
       <form method='post' action='index.php?module=Projet&recherche=true' id='recherche'>
@@ -26,7 +26,7 @@ Class Vue_Navbar{
             </div>
          ";
         }
-    }
+    }*/
 
     public function affiche_navbar(){
         echo "
@@ -47,7 +47,11 @@ Class Vue_Navbar{
             echo "
                <li class='nav-item dropdown'>
                     <a class='nav-link dropdown-toggle nav-border-white' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-                        Quêtes
+                        Quêtes";
+            $num = $args[1] -> rowCount();
+            if($num > 0)
+                echo "<span class='badge badge-secondary'>" . $num . "</span>";
+            echo"
                     </a>
                     <div class='dropdown-menu' aria-labelledby='navbarDropdown'>";
             while(($line =  $args[0] -> fetch()) != false) {
@@ -65,7 +69,7 @@ Class Vue_Navbar{
             echo "
                         <div class='dropdown-divider'>
                         </div>
-                        <a class='dropdown-item' href='index.php?module=projet'>Créer une nouvelle quête</a>
+                        <a class='dropdown-item' href='index.php?module=projet'>Créer une nouvelle quêtes</a>
                     </div>
                 </li>";
         }

@@ -21,7 +21,7 @@ Class Controleur_Profil{
         else {
             $req = $this -> modele -> getProfil($args[0]);
             $req2 = $this -> modele -> getAmi($args[0]);
-            $mesQuetes = $this -> modele -> getMesQuetes();
+            $mesQuetes = $this -> modele -> getMesQuetesPourInvitation($args[0]);
         }
         $this -> vue -> afficheProfil($req, $req2, $mesQuetes);
     }

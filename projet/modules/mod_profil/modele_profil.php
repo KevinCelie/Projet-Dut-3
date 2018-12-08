@@ -42,9 +42,9 @@ Class Modele_Profil extends BDD{
 		return $req;
 	}
     
-    public function getMesQuetes(){
-        $req = self::$DBH -> prepare("select * from appartientProjet inner join Projet using(idProjet) where idUtilisateur = ?");
-        $req -> execute(array($_SESSION['login']));
+    public function getMesQuetesPourInvitation($id){
+        $req = self::$DBH -> prepare("select p1.idProjet, projet from Projet INNER JOIN appartientProjet as p1 USING(idProjet) LEFT JOIN appartientProjet as p2 ON p2.idUtilisateur = ? and p1.idProjet = p2.idProjet  WHERE p1.idUtilisateur = ? AND p2.idUtilisateur IS NULL");
+        $req -> execute(array($id, $_SESSION['login']));
         return $req;
     }
 
@@ -78,3 +78,9 @@ Class Modele_Profil extends BDD{
 
 }
 ?>
+
+
+<!--SELECT idProjet, projet from Projet inner join appartientProjet using(idProjet) where idUtilisateur = 2 - SELECT idProjet, projet FROM Projet inner join appartientProjet using(idProjet) WHERE idUtilisateur = 1-->
+<!--SELECT * FROM Projet as p INNER JOIN appartientProjet as p1 using(idProjet) LEFT JOIN appartientProjet as p2 ON p1.idUtilisateur != p2.idUtilisateur and p1.idProjet = p2.idProjet where p1.idProjet = 2 and p2.idProjet is null -->
+
+<!--select DISTINCT Projet.idProjet, Projet.projet from Projet INNER JOIN appartientProjet as p USING(idProjet) JOIN Utilisateur ON p.idUtilisateur != Utilisateur.idUtilisateur LEFT JOIN appartientProjet as p1 ON p1.idUtilisateur = 4 AND p.idProjet = p1.idProjet WHERE p.idUtilisateur = 2 and Utilisateur.idUtilisateur = 4 -->

@@ -41,7 +41,7 @@ Class Modele_Projet extends BDD{
 
                 $line = $req2 -> fetch();
 
-                $req3 = self::$DBH -> prepare("insert into appartientProjet values (?,?,True)");
+                $req3 = self::$DBH -> prepare("insert into appartientProjet values (?,?,True, False)");
                 $req3 -> execute(array($line['idProjet'], $_SESSION['login']));
 
                 if($req3 == true) {
@@ -60,16 +60,13 @@ Class Modele_Projet extends BDD{
         }
     }
     public function invite($projet, $profil){
-        $req = self::$DBH -> prepare("insert into requeteProjet values (?,?,False)");
+        $req = self::$DBH -> prepare("insert into appartientProjet values (?,?,False, True)");
         $req -> execute(array($projet,$profil));
     }
+    
     public function accepte($projet, $profil){
-        $req = self::$DBH -> prepare("update requeteProjet set invitation = 1 where idProjet=? and idUtilisateur = ?");
+        $req = self::$DBH -> prepare("update appartientProjet set estRequete = 0 where idProjet=? and idUtilisateur = ?");
         $req -> execute(array($projet,$profil));
-        if($req == true) {
-            $req = self::$DBH -> prepare("insert into appartientProjet values (?,?,False)");
-            $req -> execute(array($projet,$profil));
-        }
     }
 
 }
