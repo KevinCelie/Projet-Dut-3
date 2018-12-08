@@ -26,9 +26,9 @@ Class Modele_Projet extends BDD{
             && isset($_POST['champDesc']) 
             && isset($_POST['champPrive'])) {
 
-            $id = $_SESSION['login'];
-            $titre = $_POST['champProjet'];
-            $desc = $_POST['champDesc'];
+            $id = htmlspecialchars($_SESSION['login']);
+            $titre = htmlspecialchars($_POST['champProjet']);
+            $desc = htmlspecialchars($_POST['champDesc']);
             $prive = $_POST['champPrive'];
             $git = null;
 
