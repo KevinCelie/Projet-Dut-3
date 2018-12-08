@@ -56,6 +56,7 @@ Class Modele_Projet extends BDD{
                     
                     if($req3 == true) {
                         echo "reussi";
+                        return $line['idProjet'];
                     }
                     else{
                         echo "echec";
