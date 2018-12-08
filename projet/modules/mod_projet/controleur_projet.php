@@ -33,7 +33,7 @@ Class Controleur_Projet{
                 break;
             case "creation":
                 $id = $this -> modele -> creation_quete();
-                header("Location:index.php?module=projet&action=affiche&projet=$id")
+                header("Location:index.php?module=projet&action=affiche&projet=$id");
                 break;
             default:
                 $this -> affiche_page_creation_projet();
