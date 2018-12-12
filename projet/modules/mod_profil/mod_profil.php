@@ -17,7 +17,6 @@ Class ModProfil{
 		}
 		if(isset($_GET['id'])){
 			$id = $_GET['id'];
-			$action = "profilAmi";
 		}
 		else{
 			$id = null;
@@ -27,11 +26,8 @@ Class ModProfil{
 			case "ami" :
 				$this -> c -> ajout_Ami($_GET['id']);
 				break;
-			case "profilAmi":
-				$this -> c -> affiche_profil($id);
-				break;
 			default :
-				$this -> c -> affiche_profil();
+				$this -> c -> affiche_profil($id);
 				break;
 
 		}

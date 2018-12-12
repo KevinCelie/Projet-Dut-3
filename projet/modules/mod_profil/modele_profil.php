@@ -32,11 +32,11 @@ Class Modele_Profil extends BDD{
 	public function getAmi(){
 		$args = func_get_args();
 		if(count($args) == 0) {
-			$req = self::$DBH -> prepare("select * from sontAmis inner join Utilisateur using(idUtilisateur) where idUtilisateur = ? or idUtilisateur_sontAmis = ?");
-			$req -> execute(array($_SESSION['login'], $_SESSION['login']));
+			$req = self::$DBH -> prepare("select * from sontAmis inner join Utilisateur using(idUtilisateur) where idUtilisateur_sontAmis = ? and sontAmis= 0");
+			$req -> execute(array($_SESSION['login']));
 		}
 		else {
-			$req = self::$DBH -> prepare("select * from sontAmis where (idUtilisateur = ? and idUtilisateur_sontAmis = ?) or (idUtilisateur = ? and idUtilisateur_sontAmis = ?)");
+			$req = self::$DBH -> prepare("select * from sontAmis inner join Utilisateur using(idUtilisateur) where (idUtilisateur = ? and idUtilisateur_sontAmis = ?) or (idUtilisateur = ? and idUtilisateur_sontAmis = ?)");
 			$req -> execute(array($args[0], $_SESSION['login'], $_SESSION['login'], $args[0]));
 		}
 		return $req;

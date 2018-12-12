@@ -114,6 +114,7 @@ Class Vue_Profil{
 
          /*Notif des amis*/
          if($_SESSION['login'] == $line['idUtilisateur']){
+
             echo "<div class='col-3' id='notifAmis'>";
                echo"<div class='list-group row' id='notifAmisList'>";
                   while(($line = $args[1] -> fetch()) !== false) {
