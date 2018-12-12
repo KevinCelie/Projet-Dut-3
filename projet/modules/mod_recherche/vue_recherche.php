@@ -1,32 +1,44 @@
 <?php
 Class Vue_Recherche{
-   public function __construct () {
-   }
+    public function __construct () {
+    }
 
-   public function afficheRecherche(){
-      echo 
-      "
-      <form method='post' action='index.php?module=recherche&recherche=true' id='recherche'>
-         <div class='form-group'>
-            <label for='champRecherche' class='fondGold' > Rechercher </label> 
-            <input type='text' name='champRecherche' id='champRecherche' class='form-control'/> 
-         </div>
+    public function afficheRecherche(){
+        echo 
+            "
+      <form class='form-inline my-2 my-lg-0' action='index.php?module=recherche&recherche=true' method='post'>
+         <input class='form-control mr-sm-2' type='text' placeholder='Search' aria-label='Search' name='champRecherche'>
+         <button class='btn btn-outline-success my-2 my-sm-0' type='submit'>Search</button>
       </form>
       ";
-   }
+    }
 
-   public function affichePageRecherche($req) {
-      while(($line = $req->fetch()) !== false)
-      {
-         echo 
-         "  
-            <div class='row'>
-               <a href='index.php?module=profil&id=".$line['idUtilisateur']."'>" . $line['nom'] . " " . $line['prenom'] . "</a>
+    public function affichePageRecherche($profil, $projet) {
+        echo "<h2>Profils :</h2>";
+
+        while(($line = $profil->fetch()) !== false)
+        {
+            echo 
+                "  
+            <div>
+               <a href='index.php?module=profil&id=".$line['idUtilisateur']."' title='" . $line['description'] ."' > - " . $line['nom'] . " " . $line['prenom'] . "</a>
 
             </div>
          ";
-      }
-   }
-   
+        }
+        echo "<h2>Quêtes :</h2>";
+
+        while(($line = $projet->fetch()) !== false)
+        {
+            echo 
+                "  
+            <div>
+               <a href='index.php?module=projet&action=affiche&projet=".$line['idProjet']."' title='" . $line['projetDescription'] ."'> - " . $line['projet'] . "</a>
+
+            </div>
+         ";
+        }
+    }
+
 }
 ?>

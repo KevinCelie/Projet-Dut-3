@@ -7,9 +7,14 @@ Class Modele_Recherche extends BDD{
 
 	}
 
-	public function effectuerRecherche($recherche){
-		$req = self::$DBH -> prepare("select * from Utilisateur where nom = ? or prenom = ?");
-		$req -> execute(array($recherche, $recherche));
+	public function effectuerRechercheProfil($recherche){
+		$req = self::$DBH -> prepare("select * from Utilisateur where nom like ? or prenom like ?");
+		$req -> execute(array('%' . $recherche . '%', '%' . $recherche . '%'));
+		return $req;
+	}
+    public function effectuerRechercheProjet($recherche){
+		$req = self::$DBH -> prepare("select * from Projet where projet like ?");
+		$req -> execute(array('%' . $recherche . '%'));
 		return $req;
 	}
 

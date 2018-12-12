@@ -17,7 +17,7 @@ html{
 
 body{
 	/* background-color : #171b17; */
-	background: url(panneauBois.jpg) center center;
+	background: url(images/panneauBois.jpg) center center;
 	background-size: 80% auto;
 }
 #milieu{
@@ -48,20 +48,29 @@ body{
     border-color: blue;
    /* box-shadow: 10px 10px 10px blue, -10px 10px 10px blue, inset 0px -5px 10px blue ;*/
     color: white;
-    text-shadow: 1px 1px black,-3px 3px 3px black, 1px -1px black, -1px -1px black;
     
     margin-bottom: 1%;
 }
 
+.shadow-text {
+    text-shadow: 1px 1px black,-3px 3px 3px black, 1px -1px black, -1px -1px black;
+}
 
 header h1{
 	font-size: 4rem;
 }
-.fondGold{
-	color: white;
-	-webkit-background-clip: text;
-	text-shadow: #000000 2px 2px, #000000 -2px 2px, #000000 -2px -2px, #000000 2px -2px;
+.taverne-text {
 	font-family: "MathJax_Fraktur";
+}
+
+.dropdown-menu a {
+    font-size: 20px;     
+}
+.nav-border-white {
+    border-radius: 15px;
+}
+.nav-border-white:hover {
+    box-shadow: 1px 5px white,-1px 5px  white, 1px -1px white, -1px -1px white;
 }
 
 .FormConnectChamp{
@@ -92,7 +101,7 @@ nav {
 nav a {
 	width : 100%;
 	color : white;
-	text-decoration: none;
+	/*text-decoration: none;*/
 	text-align-last: center;
 	font-size: 30px;
 }
@@ -101,11 +110,10 @@ nav a {
 }
 
 nav a:hover {
-	border-top: 3px solid #f1dabf;
-	background-color: rgba(220, 220, 220, 0.15);
-	border-radius: 20px;
-	border-bottom: 2px solid #f1dabf;
-
+	text-decoration: underline;
+	/*border-radius: 15px;*/
+	/*box-shadow: 0px 0px 15px white, -0px 0px 15px white, 0px -0px 15px white, -0px -0px 15px white, inset 0px -0px 25px white ;*/
+    */
 }
 
 #corps {
