@@ -126,8 +126,6 @@ nav a:hover {
 /*PROFIL*/
 
 #afficheProfil{
-	margin-top:25px;
-	background-color: rgba(255,255,255,0.03);
 	color : white;
 	/*box-shadow: 2px 2px 15px grey,-2px 2px 15px grey,-2px -2px 15px grey,5px -2px 15px grey;*/
 }
@@ -161,6 +159,29 @@ nav a:hover {
 	text-decoration: none;
 	border : 2px solid grey;
 	padding : 10px;
+}
+
+#notifAmisList{
+	border : 2px solid black;
+	margin-right :5px;
+}
+
+#notifAmis{
+	margin-top : 10px;
+}
+
+.addFriendButton{
+	float : right;
+}
+
+.list-group-item1{
+	position: relative;
+	display: block;
+	padding: 0.75rem 1.25rem;
+	margin-bottom: -1px;
+	background-color: rgba(255, 255, 255, 0.15);
+	border: 1px solid rgba(0, 0, 0, 0.125);
+	color : white;
 }
 
 #footer{
