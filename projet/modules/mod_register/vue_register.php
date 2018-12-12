@@ -7,7 +7,6 @@ Class Vue_Register{
    private function miseEnPage() {
     echo "<div class='row'>
             <div class='col-md-8'>
-              <img src='EcranTitre.jpg' id='img'/>
             </div>
           <div class='col-md-4' id='registerDroit'>";
     

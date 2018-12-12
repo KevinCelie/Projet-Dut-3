@@ -51,7 +51,7 @@ window.width = 1080px;
             <div class="row justify-content-md-center">
                 <div class="row align-items-start">
                     <div class="col-md-2">
-                        <img src="banniere1.png" class="banniere">
+                        <img src="images/banniere1.png" class="banniere">
                     </div>
 
                     <div class="col-md-8" id = "milieu">
@@ -128,7 +128,7 @@ window.width = 1080px;
                     </div>
 
                     <div class="col-md-2">
-                        <img src="banniere1.png" class="banniere">
+                        <img src="images/banniere1.png" class="banniere">
                     </div>
 
                 </div>
