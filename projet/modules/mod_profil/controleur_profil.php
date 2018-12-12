@@ -17,13 +17,14 @@ Class Controleur_Profil{
         if(count($args) == 0){
             $req = $this -> modele -> getProfil($_SESSION['login']);
             $req2 = $this -> modele -> getAmi();
+            $this -> vue -> afficheProfil($req, $req2);
         }
         else {
             $req = $this -> modele -> getProfil($args[0]);
             $req2 = $this -> modele -> getAmi($args[0]);
             $mesQuetes = $this -> modele -> getMesQuetesPourInvitation($args[0]);
+            $this -> vue -> afficheProfil($req, $req2, $mesQuetes);
         }
-        $this -> vue -> afficheProfil($req, $req2, $mesQuetes);
     }
 
     public function ajout_Ami($id){
