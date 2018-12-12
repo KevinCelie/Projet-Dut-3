@@ -180,6 +180,8 @@ nav a:hover {
 
 .addFriendButton{
 	float : right;
+	width : 25px;
+	height : 25px;
 }
 
 .list-group-item1{
@@ -189,6 +191,10 @@ nav a:hover {
 	margin-bottom: -1px;
 	background-color: rgba(255, 255, 255, 0.15);
 	border: 1px solid rgba(0, 0, 0, 0.125);
+	color : white;
+}
+
+.afficheProfilDemandeAmi{
 	color : white;
 }
 
