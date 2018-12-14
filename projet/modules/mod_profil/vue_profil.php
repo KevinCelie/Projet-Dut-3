@@ -114,10 +114,9 @@ Class Vue_Profil{
 
          /*Notif des amis*/
          if($_SESSION['login'] == $line['idUtilisateur']){
-
+               echo "<div class='col-3' id='notifAmis'>";
+               echo"<div class='list-group row' id='notifAmisList'>";
                   while(($line = $args[1] -> fetch()) !== false) {
-                     echo "<div class='col-3' id='notifAmis'>";
-                     echo"<div class='list-group row' id='notifAmisList'>";
                     
                      echo "<div class='list-group-item1'>";
                      echo "<a class='afficheProfilDemandeAmi' href='index.php?module=profil&id=".$line['idUtilisateur']."'>".$line['nom']." ".$line['prenom']."</a><a  href='index.php?module=profil&action=ami&id=".$line['idUtilisateur']."'><img class='addFriendButton' src='addFriend.jpeg' height='17' width='17'></a>";
