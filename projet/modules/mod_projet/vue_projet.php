@@ -3,24 +3,41 @@ Class Vue_Projet{
     public function __construct () {
     }
 
-    public function affiche_projet($req){
-        $line = $req -> fetch();
-        echo "
-            <div>
-                <h1>
-                ". $line['projet'] ."
-                </h1>
+    public function affiche_projet($reqProjet, $membreProjet){
+        $projet = $reqProjet -> fetch();
+echo "
+        <div class='row'>
+            <div class='col-9'>
+                <div>
+                    <h1>
+                    ". $projet['projet'] ."
+                    </h1>
+                </div>
+                <div>
+                        <p>
+                            Histoire : </br>". $projet['projetDescription'] ."
+                        </p>
+                </div>
+                <div>
+                        <span>
+                            Lien GitHub :". $projet['lienGitHub'] ."
+                        </span>
+                </div>
+            </div>";    
+echo        "<div class='col-3'>
+                <h2>Membres : </h2>
+                <div class='list-group row' id='notifAmisList'>";
+        
+        while(($membre = $membreProjet -> fetch()) !== false) {
+                    
+echo "              <div class='list-group-item1'>
+                        <a class='afficheProfilDemandeAmi' href='index.php?module=profil&id=".$membre['idUtilisateur']."'>".$membre['nom']." ".$membre['prenom']."</a>
+                    </div>";
+                  }
+                 
+echo"           </div>
             </div>
-            <div>
-                    <p>
-                        Histoire : </br>". $line['projetDescription'] ."
-                    </p>
-            </div>
-            <div>
-                    <span>
-                        Lien GitHub :". $line['lienGitHub'] ."
-                    </span>
-            </div>
+        </div>
 
       ";
     }
