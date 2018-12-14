@@ -10,7 +10,8 @@ Class Vue_Profil{
          echo "<div class='col-9' id='afficheProfil'>";
             echo "<div class='row ProfilRow'>";
                echo "<div class='ProfilChamp row'>";
-                  echo "<div class='col-8 text-nowrap' id='NomPrenom'>";
+                     echo "<img src='".$line['imageUtilisateur']."' id='imageProfil'>";
+                  echo "<div class='col-8  text-nowrap' id='NomPrenom'>";
                      echo $line['nom']."  ".$line['prenom']." ";
                   echo "</div>";
                   if($_SESSION['login'] != $line['idUtilisateur']){
