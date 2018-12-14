@@ -39,7 +39,7 @@ Class Vue_Register{
           <form method='post' action='index.php?module=register&action=infosupp' id='register'>
             <div class='form-group'>
               <label for='champNom' id='id'> Nom </label> 
-              <input type='text' name='champNom' id='champNom' class='form-control'/> 
+              <input type='text' name='champNom' id='champNom' class='form-control '/> 
             </div>
 
             <div class='form-group'>
@@ -49,7 +49,7 @@ Class Vue_Register{
 
             <div class='form-group'>
               <label for='champAge' id='mdp2'>Age</label> 
-              <input type='number' name='champAge' id='champAge' class='form-control'/> 
+              <input type='number' name='champAge' id='champAge' class='form-control '/> 
             </div>
 
             <div class='form-group'>
@@ -85,8 +85,10 @@ Class Vue_Register{
 
     echo "      </select>
             </div>
-
-
+            <div class='form-group' id='uploadImg'>
+                Select image to upload:
+                <input type='file' name='fileToUpload' id='fileToUpload'>
+            </div>  
             <input type='submit' value='Valider' id='valider'/>
         </form>";
 
