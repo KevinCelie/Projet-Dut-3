@@ -36,7 +36,7 @@ Class Vue_Register{
    public function infoSupp($musique,$langage){
     $this -> miseEnPage();
     echo  "
-          <form method='post' action='index.php?module=register&action=infosupp' id='register'>
+          <form method='post' action='index.php?module=register&action=infosupp' id='register' enctype='multipart/form-data'>
             <div class='form-group'>
               <label for='champNom' id='id'> Nom </label> 
               <input type='text' name='champNom' id='champNom' class='form-control '/> 
@@ -79,15 +79,16 @@ Class Vue_Register{
             <div class='form-group'>
               <label for='champLangage'>Langage de Prédilection</label>
                 <select class='form-control' id='champLangage' name='champLangage'> ";
-    while(($line = $langage -> fetch()) !== false) {
-      echo "<option value='" .$line['langage'] . "''>" . $line['langage'] . "</option>";
-    }
+                  while(($line = $langage -> fetch()) !== false) {
+                    echo "<option value='" .$line['langage'] . "''>" . $line['langage'] . "</option>";
+                  }
 
-    echo "      </select>
+                  echo "      
+                </select>
             </div>
             <div class='form-group' id='uploadImg'>
                 Select image to upload:
-                <input type='file' name='fileToUpload' id='fileToUpload'>
+                <input type='file' name='fileToUpload' id='fileToUpload'/>
             </div>  
             <input type='submit' value='Valider' id='valider'/>
         </form>";

@@ -35,14 +35,13 @@ Class Modele_Register extends BDD{
 		}
 	}
 	public function registerInfoSuppBD() {
-
 		if (isset($_POST['champNom']) 
 			&& isset($_POST['champPrenom']) 
 			&& isset($_POST['champAge'])
 			&& isset($_POST['champSexe'])
 			&& isset($_POST['champDesc'])
 			&& isset($_POST['champMusique'])
-			&& isset($_POST['champLangage'])) {
+			&& isset($_POST['champLangage'])){
 
 			$id = $_SESSION['login'];
 			$nom = $_POST['champNom'];
@@ -53,11 +52,35 @@ Class Modele_Register extends BDD{
 			$musique = $_POST['champMusique'];
 			$langage = $_POST['champLangage'];
 
-			echo $id . $nom . $prenom . $age .$desc . $sexe;
+			//Upload image
+			$target_dir = "uploads/";
+			$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+			$uploadOk = 1;
+			$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+			$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+		    if($check !== false) {
+		        echo "File is an image - " . $check["mime"] . ".";
+		        $uploadOk = 1;
+
+		        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+				&& $imageFileType != "gif" ) {
+				    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+				    $uploadOk = 0;
+				} 
+
+				if ($_FILES["fileToUpload"]["size"] > 5000000) {
+				    echo "Sorry, your file is too large.";
+				    $uploadOk = 0;
+				} 
+		    } else {
+		        echo "File is not an image.";
+		        $uploadOk = 0;
+		    }
+			//
 
 			// self::$DBH -> beginTransaction();
-			$req = self::$DBH -> prepare ("insert into Utilisateur values (?,'',?, ?, ?, ?, 1, ? )");
-			$req -> execute(array($id, $nom, $prenom, $age, $desc, $sexe));
+			$req = self::$DBH -> prepare ("insert into Utilisateur values (?,?,?, ?, ?, ?, 1, ? )");
+			$req -> execute(array($id, $target_file,$nom, $prenom, $age, $desc, $sexe));
 
 
 			if ($req == true) {
@@ -69,12 +92,23 @@ Class Modele_Register extends BDD{
 
 				if($req1 == true && $req2 == true) {
 					$_SESSION['inscriptionFini'] = true;
-				}else{
-					
+					if ($uploadOk == 0) {
+			    		echo "Sorry, your file was not uploaded.";
+			    		$reqAnnul = self::$DBH -> prepare ("UPDATE Utilisateur set imageUtilisateur = 'uploads/default_img.png' where idUtilisateur = ?");
+			       		$reqAnnul -> execute(array($_SESSION['login']));
+					// if everything is ok, try to upload file
+					} else {
+			   			if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+			        		echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+			   			} else {
+			       			$reqAnnul = self::$DBH -> prepare ("UPDATE Utilisateur set imageUtilisateur = 'uploads/default_img.png' where idUtilisateur = ?");
+			       			$reqAnnul -> execute(array($_SESSION['login']));
+			    		}
+			    	}
+				}else{	
 					echo "musique et langage CASSEEEEE";
 				}
 			}else{
-				
 				echo "ERRRRRRRRRRRRRREEEEEEUUUUUUURRRRRRRRRR";
 			}
 		}else{
