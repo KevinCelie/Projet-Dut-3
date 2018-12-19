@@ -30,6 +30,7 @@ Class Vue_Recherche{
 
         while(($line = $projet->fetch()) !== false)
         {
+          if($line['estPrive'] == 0) {
             echo 
                 "  
             <div>
@@ -37,6 +38,7 @@ Class Vue_Recherche{
 
             </div>
          ";
+          }
         }
     }
 

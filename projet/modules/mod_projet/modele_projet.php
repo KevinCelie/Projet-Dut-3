@@ -21,6 +21,15 @@ Class Modele_Projet extends BDD{
         else return null;
     }
 
+    public function getMembres($idProjet) {
+        $req = self::$DBH -> prepare("SELECT idUtilisateur, nom, prenom FROM appartientProjet INNER JOIN Utilisateur USING(idUtilisateur) WHERE estRequete = 0 AND idProjet = ?");
+        $req -> execute(array($idProjet));
+        return $req;
+    }
+
+
+
+
     public function creation_quete(){
         if (isset($_POST['champProjet']) 
             && isset($_POST['champDesc']) 
@@ -29,7 +38,7 @@ Class Modele_Projet extends BDD{
             $id = htmlspecialchars($_SESSION['login']);
             $titre = htmlspecialchars($_POST['champProjet']);
             $desc = htmlspecialchars($_POST['champDesc']);
-            $prive = $_POST['champPrive'];
+            $prive = ($_POST['champPrive']==true)?1:0;
             $git = null;
 
             $req = self::$DBH -> prepare("insert into Projet values (DEFAULT, ?, ?, ?, NULL)");
