@@ -103,6 +103,7 @@ Class Modele_Register extends BDD{
 			   			} else {
 			       			$reqAnnul = self::$DBH -> prepare ("UPDATE Utilisateur set imageUtilisateur = 'uploads/default_img.png' where idUtilisateur = ?");
 			       			$reqAnnul -> execute(array($_SESSION['login']));
+			       			echo "ERREEEEURzefazefzefzef";
 			    		}
 			    	}
 				}else{	
