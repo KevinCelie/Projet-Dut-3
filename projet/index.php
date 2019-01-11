@@ -54,76 +54,87 @@ window.width = 1080px;
                     </div>
 
                     <div class="col-md-8" id = "milieu">
-                        
-                            <header id="header">
+
+                        <header id="header">
 
 
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                            <h1 class="text-center shadow-text taverne-text">La Taverne du vieux Montreuil</h1>
-                                        </div>
-                                        <div class="col-md-4" id="connect">
-                                            <div >
-                                                <?php
-                                                ob_start();
-                                                $modConnexion = new ModConnexion();
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h1 class="text-center shadow-text taverne-text">La Taverne du vieux Montreuil</h1>
+                                    </div>
+                                    <div class="col-md-4" id="connect">
+                                        <div >
+                                            <?php
+                                            ob_start();
+                                            $modConnexion = new ModConnexion();
 
-                                                ?>
-                                            </div>
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <?php 
-                                include 'composants/navbar/controleur_navbar.php';
-                                $navbar = new Controleur_Navbar();
-                                $navbar -> affiche_navbar();
-                                ?>
-                                <!-- <nav id="nav">
+                            <?php 
+                            include 'composants/navbar/controleur_navbar.php';
+                            $navbar = new Controleur_Navbar();
+                            $navbar -> affiche_navbar();
+                            ?>
+                            <!-- <nav id="nav">
 <a href='index.php?module=profil' class="lien_nav fondGold" id="btNav" >Profil</a>
 <a href='index.php?module=equipe' class="lien_nav fondGold" id="btNav" >Equipe</a>
 </nav> -->
 
-                            </header>
+                        </header>
 
-                            <div class="container" id="corps">
-                                <?php 
-                                if(!isset($_SESSION['inscriptionFini'])) {
-                                    $m = new ModRegister();
+                        <div class="container-fluid" id="corps">
+                            <?php 
+                            if(!isset($_SESSION['inscriptionFini'])) {
+                                $m = new ModRegister();
+                            }
+                            else {
+                                if(isset($_GET['module'])) {
+                                    $module = $_GET['module'];
                                 }
                                 else {
-                                    if(isset($_GET['module'])) {
-                                        $module = $_GET['module'];
-                                    }
-                                    else {
-                                        $module = "profil";
-                                    }
-                                    switch ($module) {
-                                        case 'recherche':
-                                            include_once 'modules/mod_recherche/mod_recherche.php';
-                                            $modRecherche = new ModRecherche();
-
-                                            $modRecherche -> action("pageRecherche");
-                                            break;
-                                            
-                                        case "projet":
-                                            include_once 'modules/mod_projet/controleur_projet.php';
-                                            $controleurProjet = new Controleur_Projet();
-                                            $controleurProjet -> action();
-                                            break;
-                                            
-
-                                        default:
-                                            include_once 'modules/mod_profil/mod_profil.php';
-                                            $modProfil = new ModProfil();
-                                            break;
-                                    }
+                                    $module = "profil";
                                 }
-                                ob_end_flush();
-                                ?>
+                                switch ($module) {
+                                    case 'recherche':
+                                        include_once 'modules/mod_recherche/mod_recherche.php';
+                                        $modRecherche = new ModRecherche();
+
+                                        $modRecherche -> action("pageRecherche");
+                                        break;
+
+                                    case "projet":
+                                        include_once 'modules/mod_projet/controleur_projet.php';
+                                        $controleurProjet = new Controleur_Projet();
+                                        $controleurProjet -> action();
+                                        break;
+
+
+                                    default:
+                                        include_once 'modules/mod_profil/mod_profil.php';
+                                        $modProfil = new ModProfil();
+                                        break;
+                                }
+                            }
+                            ob_end_flush();
+                            ?>
+                        </div>
+
+                        <!-- Footer -->
+                        <footer class="container-fluid">
+
+                            <!-- Copyright -->
+                            <div class="footer-copyright text-center py-3">© 2019 Copyright:
+                                <a href="index.php"> La Taverne du Vieux Montreuil</a>
                             </div>
-                        
+                            <!-- Copyright -->
+
+                        </footer>
+                        <!-- Footer -->
                     </div>
 
                     <div class="col-md-2">

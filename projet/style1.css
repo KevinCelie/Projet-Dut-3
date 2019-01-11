@@ -1,29 +1,16 @@
 html{
-	/*background-color : #171b17;*/
 	margin: auto;
-/*	min-width: 1320px;
-	max-width: 1320px;*/
 	width: 1680px;
     height: 100%;
-/*	min-height: 960px;
-	max-height: 980px;*/
-    
-
 }
 
-/*div{
-	border : 1px solid red;
-}*/
-
 body{
-	/* background-color : #171b17; */
 	background: url(images/panneauBois.jpg) center center;
 	background-size: 80% auto;
 }
 #milieu{
-	/*background: url(fondvelours.png) no-repeat center center;
-	background-size: cover;*/
 	min-height: 1130px;
+    height: 100%;
 }
 .banniere {
 	width: 100%;
@@ -31,22 +18,12 @@ body{
 
 
 #header{
-	/*background-color: #362417;*/
-	/*background-color: #2c2c2c;*/
-	/*background-color: #171b17;
-	background: url(bois.png) no-repeat center center;
-	background-size: cover;*/
-	/*border:2px solid #f1dabf;*/
-	/*border:2px solid #bc9600;*/
-	/*border:2px solid #af8c00;*/
-	/*color: #ffcc00;*/
     background-color: rgb(0,0,0,0.8);
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     border-width: 0px 1px 1px 1px;
     border-style: solid;
     border-color: blue;
-   /* box-shadow: 10px 10px 10px blue, -10px 10px 10px blue, inset 0px -5px 10px blue ;*/
     color: white;
     
     margin-bottom: 1%;
@@ -123,6 +100,7 @@ nav a:hover {
     border-style: solid;
     border-color: blueviolet;
     color : white;
+    margin-bottom: 65px;
     /*box-shadow: 0px 0px 30px red, -0px 0px 30px red, 0px -0px 30px red, -0px -0px 30px red, inset 0px -0px 10px red ;
     */
 }
@@ -215,16 +193,17 @@ nav a:hover {
 	color : white;
 }
 
-#footer{
+footer{
     margin-top: 1%;
-    background-color: white;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    position: absolute;
+    bottom: 0;
+    background-color: rgb(0,0,0,0.7);
+    border-radius: 20px 20px 0px 0px;
     border-width: 1px 1px 0px 1px;
     border-style: solid;
-    border-color: blue;
-    /*box-shadow: 10px -10px 50px blue, -10px -10px 50px blue, inset 0px 0px 10px blue ;*/
-    color: white;
+    border-color: blueviolet;
+    color : white;
     text-shadow: 1px 1px black,-3px 3px 3px black, 1px -1px black, -1px -1px black;
+    
 }
 
