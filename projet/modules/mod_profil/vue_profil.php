@@ -197,7 +197,6 @@ Class Vue_Profil{
                   echo "<input type='submit' value='Valider' id='valider'/>";
                echo "</div>";
             echo "</form>";
-         echo "</div>";
       echo "</div>";
    }
 }
