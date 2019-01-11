@@ -7,15 +7,14 @@
         <title> La Taverne du vieux Montreuil </title>
 
 
-        <link rel="stylesheet" href="bootstrap.css" >
+        <link rel="stylesheet" href="bootstrap.css"/>
 
-        <link rel="stylesheet" type="text/css" href="style1.css" id="link"> 
+        <link rel="stylesheet" type="text/css" href="style1.css" id="link"/> 
         <?php
-        session_start();
-
-        include_once 'modules/mod_connexion/mod_connexion.php';
-        include_once 'modules/mod_register/mod_register.php';
-        BDD::connexion();
+        	session_start();
+        	include_once 'modules/mod_connexion/mod_connexion.php';
+        	include_once 'modules/mod_register/mod_register.php';
+        	BDD::connexion();
         ?>
     </head>
     <!-- <script type="text/javascript">
@@ -42,7 +41,6 @@ window.width = 1080px;
             document.getElementById("nav").style.paddingBottom  = "5px";
         }
     </script>
-
 
     <body id="body">
 
