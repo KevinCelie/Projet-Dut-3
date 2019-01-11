@@ -18,7 +18,7 @@ Class Controleur_Register{
     }
     public function registerInfoSupp() {
       $this -> modele -> registerInfoSuppBD();
-    //  header('Location: index.php');
+      header('Location: index.php');
     }
 
     public function affiche_menu(){

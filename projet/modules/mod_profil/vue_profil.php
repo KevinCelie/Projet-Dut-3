@@ -11,6 +11,11 @@ Class Vue_Profil{
             echo "<div class='row ProfilRow'>";
                echo "<div class='ProfilChamp row'>";
                      echo "<img src='".$line['imageUtilisateur']."' id='imageProfil'>";
+                     echo "<div class='form-group' id='uploadImg'>
+                        Select image to upload:
+                     <input type='file' name='fileToUpload' id='fileToUpload'/>
+                     </div>  
+                     <input type='submit' value='Valider' id='valider'/>";
                   echo "<div class='col-8  text-nowrap' id='NomPrenom'>";
                      echo $line['nom']."  ".$line['prenom']." ";
                   echo "</div>";
