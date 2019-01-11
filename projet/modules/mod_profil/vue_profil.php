@@ -115,6 +115,7 @@ Class Vue_Profil{
                   echo "</div>";
                echo "</div>";
             echo "</div>";
+               echo "<a href='index.php?module=profil&action=modifier'>Modifier Profil</a>";
          echo "</div>" ;
 
          /*Notif des amis*/
@@ -131,6 +132,19 @@ Class Vue_Profil{
                echo"</div>";
             echo "</div>";
          }
+      echo "</div>";
+   }
+
+   public function modifProfil($req){
+      $tab = array("Âge", "Description", "Vitesse de Tapping", "Sexe", "Langage de prédilection", "Style de Musique");
+      echo "<div class='row'>";
+         echo "<div class='col-9' id='modifProfil'>";
+            foreach($tab as &$value){
+               echo "<div class'row modifProfilRow'>";
+                  echo $value;
+               echo "</div>";
+            }
+         echo "</div>";
       echo "</div>";
    }
 }

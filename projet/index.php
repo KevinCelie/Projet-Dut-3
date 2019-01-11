@@ -87,7 +87,7 @@ window.width = 1080px;
 
                             </header>
 
-                            <div class="container" id="corps">
+                            <div class="container-fluid" id="corps">
                                 <?php 
                                 if(!isset($_SESSION['inscriptionFini'])) {
                                     $m = new ModRegister();
