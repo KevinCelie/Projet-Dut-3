@@ -99,6 +99,7 @@ window.width = 1080px;
                                 else {
                                     $module = "profil";
                                 }
+
                                 switch ($module) {
                                     case 'recherche':
                                         include_once 'modules/mod_recherche/mod_recherche.php';
