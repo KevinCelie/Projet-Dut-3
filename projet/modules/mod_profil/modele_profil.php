@@ -76,6 +76,90 @@ Class Modele_Profil extends BDD{
 			header("Location:index.php?module=profil&id=".$id);
 	}
 
+	public function getMusique() {
+		$musique = self::$DBH -> query("select * from Musique;");
+		return $musique;
+	}
+	public function getLangage() {
+		$langage = self::$DBH -> query("select * from Langage;");
+		return $langage;
+	}
+
+	public function updateProfil() {
+		echo "HEMOOPPPPPPPPPPPPPPPPPP";
+		if (isset($_POST['champNom']) 
+			&& isset($_POST['champPrenom']) 
+			&& isset($_POST['champAge'])
+			&& isset($_POST['champSexe'])
+			&& isset($_POST['champDesc'])
+			&& isset($_POST['champMusique'])
+			&& isset($_POST['champLangage'])){
+
+			$id = $_SESSION['login'];
+			$nom = $_POST['champNom'];
+			$prenom = $_POST['champPrenom'];
+			$age = $_POST['champAge'];
+			$sexe = $_POST['champSexe'];
+			$desc = $_POST['champDesc'];
+			$musique = $_POST['champMusique'];
+			$langage = $_POST['champLangage'];
+
+			/*Upload image
+			$target_dir = "uploads/";
+			$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+			$uploadOk = 1;
+			$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+			$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+		    if($check !== false) {
+		        echo "File is an image - " . $check["mime"] . ".";
+		        $uploadOk = 1;
+
+		        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+				&& $imageFileType != "gif" ) {
+				    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+				    $uploadOk = 0;
+				} 
+
+				if ($_FILES["fileToUpload"]["size"] > 5000000) {
+				    echo "Sorry, your file is too large.";
+				    $uploadOk = 0;
+				} 
+		    } else {
+		        echo "File is not an image.";
+		        $uploadOk = 0;
+		    }
+			//*/
+
+			// self::$DBH -> beginTransaction();
+			$req = self::$DBH -> prepare ("update Utilisateur SET nom=?, prenom=?, age=?, description=?, sexe=? where idUtilisateur=?");
+			$req -> execute(array($nom, $prenom, $age, $desc, $sexe, $id));
+
+			$req = self::$DBH -> prepare ("update ecoute SET musique = ? where idUtilisateur = ?");
+			$req -> execute(array($musique, $id));
+
+			$req = self::$DBH -> prepare ("update maitrise SET langage = ? where idUtilisateur = ?");
+			$req -> execute(array($langage, $id));
+
+
+
+			if ($req == true) {
+				header('Location: index.php?module=profil');
+			}else{
+				echo "CODE 455b: ERREUR LORS DE LA MODIFICATION DU PROFIL";
+			}
+		}else{
+			echo "Veuillez verifier les champs";
+			echo "nom" . isset($_POST['champNom'])  
+			. "prenom" . isset($_POST['champPrenom']) 
+			. "age" . isset($_POST['champAge'])
+			. "sexe" . isset($_POST['champSexe'])
+			. "desc" . isset($_POST['champDesc'])
+			. "musique" . isset($_POST['champMusique'])
+			. "langage" . isset($_POST['champLangage']);
+		}
+	}
+
+
 }
 ?>
 
