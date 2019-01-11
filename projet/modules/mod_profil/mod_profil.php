@@ -26,6 +26,9 @@ Class ModProfil{
 			case "ami" :
 				$this -> c -> ajout_Ami($_GET['id']);
 				break;
+			case "modifier" :
+				$this -> c -> modifier();
+				break;
 			default :
 				$this -> c -> affiche_profil($id);
 				break;

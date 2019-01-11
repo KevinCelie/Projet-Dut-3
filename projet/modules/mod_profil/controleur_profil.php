@@ -44,5 +44,9 @@ Class Controleur_Profil{
         header('Location: index.php?module=profil&action=liste');
     }
 
+    public function modifier(){
+        $this -> vue -> modifProfil( $this -> modele -> getProfil($_SESSION['login']));
+    }
+
 }
 ?>
