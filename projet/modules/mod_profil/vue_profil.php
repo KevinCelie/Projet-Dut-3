@@ -115,7 +115,7 @@ Class Vue_Profil{
                   echo "</div>";
                echo "</div>";
             echo "</div>";
-               echo "<a href='index.php?module=profil&action=modifier'>Modifier Profil</a>";
+               echo "<a href='index.php?module=profil&action=modifier' id='modifierProfilButton'>Modifier Profil</a>";
          echo "</div>" ;
 
          /*Notif des amis*/
