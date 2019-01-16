@@ -161,6 +161,11 @@ Class Modele_Register extends BDD{
 		if($_POST['mdp'] == $_POST['mdp2']){
 			$req = self::$DBH -> prepare("UPDATE Identification SET motDePasse =? where adresseMail = ?");
 			$req -> execute(array(crypt($_POST['mdp'],"admin"), $_SESSION['adresseMail']));
+			unset($_SESSION['adresseMail']);
+			$req = self::$DBH -> prepare("UPDATE Identification SET resetToken='NULL' where adresseMail = ?");
+			$req -> execute(array($_SESSION['adresseMail']));
+		}else{
+			echo "Mot de passe éronné";
 		}
 	}
 }
