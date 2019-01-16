@@ -57,7 +57,8 @@ Class Controleur_Register{
    }
 
    public function verifMail(){
-      $this -> modele -> verifMail($_GET['token']);
+      $verif = $this -> modele -> verifMail($_GET['token']);
+      $this -> vue -> vueChangPass($verif);
    }
 }
 ?>
