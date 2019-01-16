@@ -148,8 +148,8 @@ Class Modele_Register extends BDD{
 	public function verifMail($token){
 		$req = self::$DBH -> prepare("SELECT * from Identification where resetToken = ?");
 		$req -> execute(array($token));
-		$req -> fetch();
-		var_dump($req);
+		$line = $req -> fetch();
+		echo $line['adresseMail'];
 	}
 }
 ?>
