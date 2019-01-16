@@ -150,6 +150,7 @@ Class Modele_Register extends BDD{
 		$req -> execute(array($token));
 		if($req -> rowCount()==1){
 			$line = $req -> fetch();
+			$_SESSION['adresseMail'] = $line['adresseMail'];
 			return $line['adresseMail'];
 		}else{
 			return "false";
@@ -157,8 +158,10 @@ Class Modele_Register extends BDD{
 	}
 
 	public function changPass(){
-		echo $_POST['mdp'];
-		echo $_POST['mdp2'];
+		if($_POST['mdp'] == $_POST['mdp2']){
+			$req = self::$DBH -> prepare("UPDATE Identification SET motDePasse =? where adresseMail = ?");
+			$req -> execute(array(crypt($_POST['mdp'],"admin"), $_SESSION['adresseMail']));
+		}
 	}
 }
 ?>
