@@ -149,7 +149,7 @@ Class Modele_Register extends BDD{
 		$req = self::$DBH -> prepare("SELECT * from Identification where resetToken = ?");
 		$req -> execute(array($token));
 		$req -> fetch();
-		echo $req;
+		echo $req['adresseMail'];
 	}
 }
 ?>
