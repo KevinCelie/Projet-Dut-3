@@ -10,21 +10,17 @@ Class Vue_Profil{
          echo "<div class='col-9' id='afficheProfil'>";
             echo "<div class='row ProfilRow'>";
                echo "<div class='ProfilChamp row'>";
-                     echo "<img src='".$line['imageUtilisateur']."' id='imageProfil'>";
-                     echo "<div class='form-group' id='uploadImg'>
-                        Select image to upload:
-                     <input type='file' name='fileToUpload' id='fileToUpload'/>
-                     </div>";
+                  echo "<img src='".$line['imageUtilisateur']."' id='imageProfil'>";
                   echo "<div class='col-8  text-nowrap' id='NomPrenom'>";
-                     echo $line['nom']."  ".$line['prenom']." ";
-                  echo "</div>";
-                  if($_SESSION['login'] != $line['idUtilisateur']){
-                     $line2 = $args[1]->fetch();
-                     if($line2 == False){
-                        echo "<div class='col-4 text-nowrap'><a id='ajouterAmiButton' href='index.php?module=profil&action=ami&id=".$line['idUtilisateur']."'> Ajouter en Ami </a></div>";
-                     }else{
-                        if($line2['sontAmis'] == 0){
-                           if($line2['idUtilisateur'] == $_SESSION['login']){
+                  echo $line['nom']."  ".$line['prenom']." ";
+               echo "</div>";
+               if($_SESSION['login'] != $line['idUtilisateur']){
+                  $line2 = $args[1]->fetch();
+                  if($line2 == False){
+                     echo "<div class='col-4 text-nowrap'><a id='ajouterAmiButton' href='index.php?module=profil&action=ami&id=".$line['idUtilisateur']."'> Ajouter en Ami </a></div>";
+                  }else{
+                     if($line2['sontAmis'] == 0){
+                       if($line2['idUtilisateur'] == $_SESSION['login']){
                               echo "<div class='col-4 text-nowrap'><a id='ajouterAmiButton'> Demande envoyée </a></div>";
                            }else{
                               echo "<div class='col-4 text-nowrap'><a id='ajouterAmiButton' href='index.php?module=profil&action=ami&id=".$line['idUtilisateur']."'> Accepter la demande </a></div>";
@@ -192,11 +188,17 @@ Class Vue_Profil{
                   echo "      
                    </select>";
                echo "</div>";
-               echo "</div>";
-               echo "<div class='col-8'>";
-                  echo "<input type='submit' value='Valider' id='valider'/>";
-               echo "</div>";
-            echo "</form>";
+            echo "</div>";
+            echo "<div class='col-4'>";
+               echo "<img src='".$info['imageUtilisateur']."' id='imageProfil'>";
+
+               echo "<div class='form-group' id='uploadImg'>
+                        Select image to upload:
+                     <input type='file' name='fileToUpload' id='fileToUpload'/>
+               </div>";
+               echo "<input type='submit' value='Valider' id='valider'/>";
+            echo "</div>";
+         echo "</form>";
       echo "</div>";
    }
 }

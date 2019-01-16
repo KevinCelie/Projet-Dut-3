@@ -104,7 +104,7 @@ Class Modele_Profil extends BDD{
 			$musique = $_POST['champMusique'];
 			$langage = $_POST['champLangage'];
 
-			/*Upload image
+			//Upload image
 			$target_dir = "uploads/";
 			$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 			$uploadOk = 1;
@@ -120,19 +120,32 @@ Class Modele_Profil extends BDD{
 				    $uploadOk = 0;
 				} 
 
-				if ($_FILES["fileToUpload"]["size"] > 5000000) {
+				if ($_FILES["fileToUpload"]["size"] > 50000000) {
 				    echo "Sorry, your file is too large.";
 				    $uploadOk = 0;
 				} 
 		    } else {
-		        echo "File is not an image.";
+		        echo "File is not afileToUploadn image.";
 		        $uploadOk = 0;
 		    }
 			//*/
-
+		    if ($uploadOk == 0) {
+			    echo "Sorry, your file was not uploaded.";
+			    $reqAnnul = self::$DBH -> prepare ("UPDATE Utilisateur set imageUtilisateur = 'uploads/default_img.png' where idUtilisateur = ?");
+			    $reqAnnul -> execute(array($_SESSION['login']));
+					// if everything is ok, try to upload file
+			} else {
+			   	if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+			        		echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+			   	} else {
+			    	$reqAnnul = self::$DBH -> prepare ("UPDATE Utilisateur set imageUtilisateur = 'uploads/default_img.png' where idUtilisateur = ?");
+			    	$reqAnnul -> execute(array($_SESSION['login']));
+			       			echo "ERREEEEURzefazefzefzef";
+			    }
+			}
 			// self::$DBH -> beginTransaction();
-			$req = self::$DBH -> prepare ("update Utilisateur SET nom=?, prenom=?, age=?, description=?, sexe=? where idUtilisateur=?");
-			$req -> execute(array($nom, $prenom, $age, $desc, $sexe, $id));
+			$req = self::$DBH -> prepare ("update Utilisateur SET imageUtilisateur=?, nom=?, prenom=?, age=?, description=?, sexe=? where idUtilisateur=?");
+			$req -> execute(array($target_file ,$nom, $prenom, $age, $desc, $sexe, $id));
 
 			$req = self::$DBH -> prepare ("update ecoute SET musique = ? where idUtilisateur = ?");
 			$req -> execute(array($musique, $id));
