@@ -123,17 +123,18 @@ Class Vue_Register{
 
    public function vueChangPass($verif){
       echo "
-      <form method='post' action='index.php?module=register&action=changPass' id='register' enctype='multipart/form-data'>
-      <div class='form-group'>
-        <label id='mdp' for='champmdp'>Mot de passe</label> 
-        <input type='password' name='mdp' id='champmdp' class='form-control'/> 
-      </div>
-      <div class='form-group'>
-        <label id='mdp2' for='champmdp'>Confirmer Mot de passe</label> 
-        <input type='password' name='mdp2' id='champmdp' class='form-control'/> 
-      </div>
-      <input type='submit' value='Valider' id='valider'/>";
-
+      <div class='col-md-4'>
+        <form method='post' action='index.php?module=register&action=changPass' id='register' enctype='multipart/form-data'>
+        <div class='form-group'>
+          <label id='mdp' for='champmdp'>Mot de passe</label> 
+          <input type='password' name='mdp' id='champmdp' class='form-control'/> 
+        </div>
+        <div class='form-group'>
+          <label id='mdp2' for='champmdp'>Confirmer Mot de passe</label> 
+          <input type='password' name='mdp2' id='champmdp' class='form-control'/> 
+        </div>
+        <input type='submit' value='Valider' id='valider'/>
+      </div>";
    }
 }
 ?>
