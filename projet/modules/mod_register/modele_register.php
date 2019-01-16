@@ -134,7 +134,7 @@ Class Modele_Register extends BDD{
 	}
 
 	public function modifPass(){
-		$token = crypt(rand(0,999), "token");
+		$token = crypt(rand(0,999), "qeruneqy");
 		mail("rafi01081999@gmail.com","YOLO","http://tvm.aop.ovh/index.php?module=register&action=verifMail&token=".$token);
 		$req = self::$DBH -> prepare("UPDATE Identification SET resetToken = ? where adresseMail = ?");
 		$req -> execute(array($token, $_POST['email']));
