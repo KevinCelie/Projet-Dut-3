@@ -157,8 +157,8 @@ Class Modele_Register extends BDD{
 	}
 
 	public function changPass(){
-		echo $_GET['mdp'];
-		echo $_GET['mdp2'];
+		echo $_POST['mdp'];
+		echo $_POST['mdp2'];
 	}
 }
 ?>
