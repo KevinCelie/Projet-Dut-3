@@ -57,7 +57,7 @@ Class Controleur_Register{
    }
 
    public function verifMail(){
-      $this -> modele -> verifMail($_POST['token']);
+      $this -> modele -> verifMail($_GET['token']);
    }
 }
 ?>
