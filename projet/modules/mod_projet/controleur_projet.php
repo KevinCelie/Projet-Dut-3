@@ -21,11 +21,13 @@ Class Controleur_Projet{
 
         switch($action){
             case "affiche":
-                if(isset($_SESSION['idProjet'])) {
-                    $projet = $this -> modele -> getProjet($_SESSION['idProjet']);
+
+                if(isset($_GET['projet'])) {
+                    $projet = $this -> modele -> getProjet($_GET['projet']);
+                    $estMembre = $this->modele->estMembre();
                     if($projet != null) {
-                        $membre = $this -> modele -> getMembres($_SESSION['idProjet']); 
-                        $this -> vue -> affiche_projet($projet, $membre);
+                        $membre = $this -> modele -> getMembres($_GET['projet']); 
+                        $this -> vue -> affiche_projet($projet, $membre,$estMembre);
                         break;
                     }
                 }
