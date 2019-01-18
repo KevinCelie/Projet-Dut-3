@@ -45,7 +45,15 @@ Class Controleur_Profil{
     }
 
     public function modifier(){
-        $this -> vue -> modifProfil( $this -> modele -> getProfil($_SESSION['login']));
+        $infoProfil = $this -> modele -> getProfil($_SESSION['login']);
+        $musique = $this -> modele -> getMusique();
+        $langage = $this -> modele -> getLangage();
+        $this -> vue -> modifProfil($infoProfil, $musique, $langage);
+    }
+
+    public function updateProfil(){
+        $this -> modele -> updateProfil();
+        echo "LOOOL";
     }
 
 }

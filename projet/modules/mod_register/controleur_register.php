@@ -55,5 +55,14 @@ Class Controleur_Register{
       $result = $this -> modele -> modifPass();
       $this -> vue -> afficheResultModifPass($result);
    }
+
+   public function verifMail(){
+      $verif = $this -> modele -> verifMail($_GET['token']);
+      $this -> vue -> vueChangPass($verif);
+   }
+
+   public function changPass(){
+      $this -> modele -> changPass();
+   }
 }
 ?>

@@ -29,6 +29,9 @@ Class ModProfil{
 			case "modifier" :
 				$this -> c -> modifier();
 				break;
+			case "updateProfil" :
+				$this -> c -> updateProfil();
+				break;
 			default :
 				$this -> c -> affiche_profil($id);
 				break;

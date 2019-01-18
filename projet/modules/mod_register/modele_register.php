@@ -68,7 +68,7 @@ Class Modele_Register extends BDD{
 				    $uploadOk = 0;
 				} 
 
-				if ($_FILES["fileToUpload"]["size"] > 5000000) {
+				if ($_FILES["fileToUpload"]["size"] > 50000000) {
 				    echo "Sorry, your file is too large.";
 				    $uploadOk = 0;
 				} 
@@ -134,61 +134,37 @@ Class Modele_Register extends BDD{
 	}
 
 	public function modifPass(){
-		$token = rand(0,999);
-		$req = self::$DBH -> prepare("select adresseMail from Identification where adresseMail = ?");
-		$req -> execute(array($_POST['email']));
-		$test = $req -> fetch();
-
-		if($test == true){		
-			$req = self::$DBH -> prepare("UPDATE Identification SET resetToken = ? where adresseMail = ?");
-			$token = crypt($token, "Changepassword");
-			$req -> execute(array($token ,$_POST['email']));
-
-			if($req == true){
-				//require_once("/usr/share/php/libphp-phpmailer/class.phpmailer.php");
-				require_once("/usr/share/php/libphp-phpmailer/PHPMailerAutoload.php");
-				$mail = new PHPmailer();
-
-
-				$mail->isSMTP(); // Paramétrer le Mailer pour utiliser SMTP 
-				$mail->Host = 'smtp.gmail.com'; // Spécifier le serveur SMTP
-				$mail->SMTPAuth = true; // Activer authentication SMTP
-				$mail->Username = 'ltdvm93@gmail.com'; // Votre adresse email d'envoi
-				$mail->Password = 'qeruneqy42'; // Le mot de passe de cette adresse email
-				$mail->SMTPSecure = false; // Accepter SSL
-				$mail->SMTPAutoTLS = false;
-				$mail->Port = 587;
-
-				$mail->setFrom('ltdvm93@gmail.com', 'First Last'); // Personnaliser l'envoyeur
-				$mail->addAddress('rafi01081999@gmail.com', 'Rafael'); // Ajouter le destinataire
-				//$mail->addAddress('To2@example.com'); 
-				//$mail->addReplyTo('info@example.com', 'Information'); // L'adresse de réponse
-				//$mail->addCC('cc@example.com');
-				//$mail->addBCC('bcc@example.com');
-
-				//$mail->addAttachment('/var/tmp/file.tar.gz'); // Ajouter un attachement
-				//$mail->addAttachment('/tmp/image.jpg', 'new.jpg'); 
-				//$mail->isHTML(false); // Paramétrer le format des emails en HTML ou non
-
-				$mail->Subject = 'Here is the subject';
-				$mail->Body = 'Pour changer votre mot de passe cliquez sur ce lien : ';
-				$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-				if(!$mail->Send()) {
-				    $mensagemRetorno = 'Error: '. print($mail->ErrorInfo);
-				    echo $mensagemRetorno;
-				} else {
-				    $mensagemRetorno = 'E-mail sent!';
-				    echo $mensagemRetorno;
-				}
-
-				return true;
-			}else{
-				return false;
-			}
-
+		$token = crypt(rand(0,999), "qeruneqy");
+		mail("rafi01081999@gmail.com","YOLO","http://tvm.aop.ovh/index.php?module=register&action=verifMail&token=".$token);
+		$req = self::$DBH -> prepare("UPDATE Identification SET resetToken = ? where adresseMail = ?");
+		$req -> execute(array($token, $_POST['email']));
+		if($req->rowCount()==1){
+			return true;
 		}else{
 			return false;
+		}
+	}
+
+	public function verifMail($token){
+		$req = self::$DBH -> prepare("SELECT * from Identification where resetToken = ?");
+		$req -> execute(array($token));
+		if($req -> rowCount()==1){
+			$line = $req -> fetch();
+			$_SESSION['adresseMail'] = $line['adresseMail'];
+			return $line['adresseMail'];
+		}else{
+			return "false";
+		}
+	}
+
+	public function changPass(){
+		if($_POST['mdp'] == $_POST['mdp2']){
+			$req = self::$DBH -> prepare("UPDATE Identification SET motDePasse =?, resetToken=null where adresseMail = ?");
+			$req -> execute(array(crypt($_POST['mdp'],"admin"), $_SESSION['adresseMail']));
+			unset($_SESSION['adresseMail']);
+			header("Location:index.php");
+		}else{
+			echo "Mot de passe éronné";
 		}
 	}
 }

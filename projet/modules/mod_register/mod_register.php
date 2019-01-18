@@ -33,6 +33,14 @@ class ModRegister {
 				$this -> controleur -> resultModifPass();
 				break;
 
+			case "verifMail" :
+				$this -> controleur -> verifMail();
+				break;
+
+			case "changPass" :
+				$this -> controleur -> changPass();
+				break;
+
 			default :
 				// $this -> controleur -> affiche_bienvenue();
 				if(!isset($_SESSION['login'])){
@@ -44,8 +52,6 @@ class ModRegister {
 				break;
 		}
 	}
-
-	
 	
 }
 ?>

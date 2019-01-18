@@ -10,21 +10,17 @@ Class Vue_Profil{
          echo "<div class='col-9' id='afficheProfil'>";
             echo "<div class='row ProfilRow'>";
                echo "<div class='ProfilChamp row'>";
-                     echo "<img src='".$line['imageUtilisateur']."' id='imageProfil'>";
-                     echo "<div class='form-group' id='uploadImg'>
-                        Select image to upload:
-                     <input type='file' name='fileToUpload' id='fileToUpload'/>
-                     </div>";
+                  echo "<img src='".$line['imageUtilisateur']."' id='imageProfil'>";
                   echo "<div class='col-8  text-nowrap' id='NomPrenom'>";
-                     echo $line['nom']."  ".$line['prenom']." ";
-                  echo "</div>";
-                  if($_SESSION['login'] != $line['idUtilisateur']){
-                     $line2 = $args[1]->fetch();
-                     if($line2 == False){
-                        echo "<div class='col-4 text-nowrap'><a id='ajouterAmiButton' href='index.php?module=profil&action=ami&id=".$line['idUtilisateur']."'> Ajouter en Ami </a></div>";
-                     }else{
-                        if($line2['sontAmis'] == 0){
-                           if($line2['idUtilisateur'] == $_SESSION['login']){
+                  echo $line['nom']."  ".$line['prenom']." ";
+               echo "</div>";
+               if($_SESSION['login'] != $line['idUtilisateur']){
+                  $line2 = $args[1]->fetch();
+                  if($line2 == False){
+                     echo "<div class='col-4 text-nowrap'><a id='ajouterAmiButton' href='index.php?module=profil&action=ami&id=".$line['idUtilisateur']."'> Ajouter en Ami </a></div>";
+                  }else{
+                     if($line2['sontAmis'] == 0){
+                       if($line2['idUtilisateur'] == $_SESSION['login']){
                               echo "<div class='col-4 text-nowrap'><a id='ajouterAmiButton'> Demande envoyée </a></div>";
                            }else{
                               echo "<div class='col-4 text-nowrap'><a id='ajouterAmiButton' href='index.php?module=profil&action=ami&id=".$line['idUtilisateur']."'> Accepter la demande </a></div>";
@@ -115,7 +111,7 @@ Class Vue_Profil{
                   echo "</div>";
                echo "</div>";
             echo "</div>";
-               echo "<a href='index.php?module=profil&action=modifier'>Modifier Profil</a>";
+               echo "<a href='index.php?module=profil&action=modifier' id='modifierProfilButton'>Modifier Profil</a>";
          echo "</div>" ;
 
          /*Notif des amis*/
@@ -135,16 +131,74 @@ Class Vue_Profil{
       echo "</div>";
    }
 
-   public function modifProfil($req){
-      $tab = array("Âge", "Description", "Vitesse de Tapping", "Sexe", "Langage de prédilection", "Style de Musique");
+   public function modifProfil($req, $musique, $langage){
+      $champNom = array("Nom","Prenom", "Âge", "Description","Sexe");
       echo "<div class='row'>";
-         echo "<div class='col-9' id='modifProfil'>";
-            foreach($tab as &$value){
-               echo "<div class'row modifProfilRow'>";
-                  echo $value;
+      $champId = array("champNom", "champPrenom", "champAge", "champDesc", "champSexe");
+
+         echo "<div class='col-4' id='modifProfil'>";
+            $i = 0;
+            $info = $req -> fetch();
+            echo "<form method='post' action='index.php?module=profil&action=updateProfil' id='updateProfil' enctype='multipart/form-data'>";
+               while($i < 5){
+                  if($champNom[$i] == "Sexe"){
+                     echo "<div class = 'form-group'>";
+                        echo "Sexe";
+                        echo "<select ".$info[7]." class='form-control' id='champSexe' name='champSexe'>;
+                           <option value='Homme'>Homme</option>
+                           <option value='Femme'>Femme</option>
+                        </select>";
+                     echo "</div>";
+                  }else{
+                     echo "<div class = 'form-group'>";
+                        echo $champNom[$i];
+                       echo "<input value ='".$info[$i+2]."' type = 'text' name='".$champId[$i]."' id='".$champId[$i]."' class='form-control'/>";
+                     echo "</div>";
+                  }
+                  $i = $i + 1;
+               }
+
+               echo "<div class='form-group'>
+                 <label for='champMusique'>Musique Préférée</label>
+                   <select class='form-control' name='champMusique' id='champMusique'>";
+      
+                     while(($line = $musique -> fetch()) !== false) {
+
+                       echo "<option value='" .$line['musique'] . "'";
+                        if($info[9] == $line['musique']){
+                              echo " selected";
+                        }
+                       echo ">" . $line['musique'] . "</option>";
+                     }
+
+                  echo "</select>
+               </div>
+
+               <div class='form-group'>
+                 <label for='champLangage'>Langage de Prédilection</label>
+                   <select selected='".$info[8]."' class='form-control' id='champLangage' name='champLangage'> ";
+                     while(($line = $langage -> fetch()) !== false) {
+                       echo "<option value='" .$line['langage'] . "'";
+                        if($info[8] == $line['langage']){
+                              echo " selected";
+                        }
+                       echo ">" . $line['langage'] . "</option>";
+                     }
+
+                  echo "      
+                   </select>";
                echo "</div>";
-            }
-         echo "</div>";
+            echo "</div>";
+            echo "<div class='col-4'>";
+               echo "<img src='".$info['imageUtilisateur']."' id='imageProfil'>";
+
+               echo "<div class='form-group' id='uploadImg'>
+                        Select image to upload:
+                     <input type='file' name='fileToUpload' id='fileToUpload'/>
+               </div>";
+               echo "<input type='submit' value='Valider' id='valider'/>";
+            echo "</div>";
+         echo "</form>";
       echo "</div>";
    }
 }
