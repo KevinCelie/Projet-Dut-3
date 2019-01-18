@@ -193,6 +193,11 @@ nav a:hover {
 	color : white;
 }
 
+
+#accordion button {
+    font-size: 1.5em;
+}
+
 #modifierProfilButton{
 	text-decoration: none;
 	color : white;
