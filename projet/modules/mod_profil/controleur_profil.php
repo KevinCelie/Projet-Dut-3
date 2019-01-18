@@ -53,7 +53,7 @@ Class Controleur_Profil{
 
     public function updateProfil(){
         $this -> modele -> updateProfil();
-        echo "LOOOL";
+        header('Location: index.php?module=profil');
     }
 
 }

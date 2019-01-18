@@ -86,98 +86,94 @@ Class Modele_Profil extends BDD{
 	}
 
 	public function updateProfil() {
-		echo "HEMOOPPPPPPPPPPPPPPPPPP";
-		if (isset($_POST['champNom']) 
-			&& isset($_POST['champPrenom']) 
-			&& isset($_POST['champAge'])
-			&& isset($_POST['champSexe'])
-			&& isset($_POST['champDesc'])
-			&& isset($_POST['champMusique'])
-			&& isset($_POST['champLangage'])){
+		if($_SESSION['tokenVerif'] == $_POST['tokenVerif']){
+			if (isset($_POST['champNom']) 
+				&& isset($_POST['champPrenom']) 
+				&& isset($_POST['champAge'])
+				&& isset($_POST['champSexe'])
+				&& isset($_POST['champDesc'])
+				&& isset($_POST['champMusique'])
+				&& isset($_POST['champLangage'])){
 
-			$id = $_SESSION['login'];
-			$nom = $_POST['champNom'];
-			$prenom = $_POST['champPrenom'];
-			$age = $_POST['champAge'];
-			$sexe = $_POST['champSexe'];
-			$desc = $_POST['champDesc'];
-			$musique = $_POST['champMusique'];
-			$langage = $_POST['champLangage'];
+				$id = htmlspecialchars($_SESSION['login']);
+				$nom = htmlspecialchars($_POST['champNom']);
+				$prenom = htmlspecialchars($_POST['champPrenom']);
+				$age = htmlspecialchars($_POST['champAge']);
+				$sexe = htmlspecialchars($_POST['champSexe']);
+				$desc = htmlspecialchars($_POST['champDesc']);
+				$musique = htmlspecialchars($_POST['champMusique']);
+				$langage = htmlspecialchars($_POST['champLangage']);
 
-			//Upload image
-			$target_dir = "uploads/";
-			$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-			$uploadOk = 1;
-			$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-			$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-		    if($check !== false) {
-		        echo "File is an image - " . $check["mime"] . ".";
-		        $uploadOk = 1;
+				var_dump($_FILES['fileToUpload']);
 
-		        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-				&& $imageFileType != "gif" ) {
-				    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-				    $uploadOk = 0;
-				} 
+				//Upload image
+				$target_dir = "uploads/";
+				if($_FILES["fileToUpload"]["name"] != ""){
+					$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+					$uploadOk = 1;
+					$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+					$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+				    if($check !== false) {
+				        echo "File is an image - " . $check["mime"] . ".";
+				        $uploadOk = 1;
 
-				if ($_FILES["fileToUpload"]["size"] > 50000000) {
-				    echo "Sorry, your file is too large.";
-				    $uploadOk = 0;
-				} 
-		    } else {
-		        echo "File is not afileToUploadn image.";
-		        $uploadOk = 0;
-		    }
-			//*/
-		    if ($uploadOk == 0) {
-			    echo "Sorry, your file was not uploaded.";
-			    $reqAnnul = self::$DBH -> prepare ("UPDATE Utilisateur set imageUtilisateur = 'uploads/default_img.png' where idUtilisateur = ?");
-			    $reqAnnul -> execute(array($_SESSION['login']));
-					// if everything is ok, try to upload file
-			} else {
-			   	if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-			        		echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-			   	} else {
-			    	$reqAnnul = self::$DBH -> prepare ("UPDATE Utilisateur set imageUtilisateur = 'uploads/default_img.png' where idUtilisateur = ?");
-			    	$reqAnnul -> execute(array($_SESSION['login']));
-			       			echo "ERREEEEURzefazefzefzef";
-			    }
-			}
-			// self::$DBH -> beginTransaction();
-			$req = self::$DBH -> prepare ("update Utilisateur SET imageUtilisateur=?, nom=?, prenom=?, age=?, description=?, sexe=? where idUtilisateur=?");
-			$req -> execute(array($target_file ,$nom, $prenom, $age, $desc, $sexe, $id));
+				        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+						&& $imageFileType != "gif" ) {
+						    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+						    $uploadOk = 0;
+						} 
 
-			$req = self::$DBH -> prepare ("update ecoute SET musique = ? where idUtilisateur = ?");
-			$req -> execute(array($musique, $id));
+						if ($_FILES["fileToUpload"]["size"] > 50000000) {
+						    echo "Sorry, your file is too large.";
+						    $uploadOk = 0;
+						} 
+				    } else {
+				        echo "File is not afileToUploadn image.";
+				        $uploadOk = 0;
+				    }
+					//*/
+				    if ($uploadOk == 0) {
+					    echo "Sorry, your file was not uploaded.";
+					    $reqAnnul = self::$DBH -> prepare ("UPDATE Utilisateur set imageUtilisateur = 'uploads/default_img.png' where idUtilisateur = ?");
+					    $reqAnnul -> execute(array($_SESSION['login']));
+							// if everything is ok, try to upload file
+					} else {
+					   	if ($_FILES["fileToUpload"]["name"] != "" && move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+					        		echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+					   	} else {
+					    	$reqAnnul = self::$DBH -> prepare ("UPDATE Utilisateur set imageUtilisateur = 'uploads/default_img.png' where idUtilisateur = ?");
+					    	$reqAnnul -> execute(array($_SESSION['login']));
+					       			echo "ERREEEEURzefazefzefzef";
+					    }
+					}
+				}else{
+					$info = $this -> getProfil($_SESSION['login']);
+					$line = $info -> fetch();
+					$target_file = $line['imageUtilisateur'];
+				}
+				
+				// self::$DBH -> beginTransaction();
+				$req = self::$DBH -> prepare ("update Utilisateur SET imageUtilisateur=?, nom=?, prenom=?, age=?, description=?, sexe=? where idUtilisateur=?");
+				$req -> execute(array($target_file ,$nom, $prenom, $age, $desc, $sexe, $id));
 
-			$req = self::$DBH -> prepare ("update maitrise SET langage = ? where idUtilisateur = ?");
-			$req -> execute(array($langage, $id));
+				$req = self::$DBH -> prepare ("update ecoute SET musique = ? where idUtilisateur = ?");
+				$req -> execute(array($musique, $id));
 
-
-
-			if ($req == true) {
-				header('Location: index.php?module=profil');
+				$req = self::$DBH -> prepare ("update maitrise SET langage = ? where idUtilisateur = ?");
+				$req -> execute(array($langage, $id));
 			}else{
-				echo "CODE 455b: ERREUR LORS DE LA MODIFICATION DU PROFIL";
+				echo "Veuillez verifier les champs";
+				echo "nom" . isset($_POST['champNom'])  
+				. "prenom" . isset($_POST['champPrenom']) 
+				. "age" . isset($_POST['champAge'])
+				. "sexe" . isset($_POST['champSexe'])
+				. "desc" . isset($_POST['champDesc'])
+				. "musique" . isset($_POST['champMusique'])
+				. "langage" . isset($_POST['champLangage']);
 			}
-		}else{
-			echo "Veuillez verifier les champs";
-			echo "nom" . isset($_POST['champNom'])  
-			. "prenom" . isset($_POST['champPrenom']) 
-			. "age" . isset($_POST['champAge'])
-			. "sexe" . isset($_POST['champSexe'])
-			. "desc" . isset($_POST['champDesc'])
-			. "musique" . isset($_POST['champMusique'])
-			. "langage" . isset($_POST['champLangage']);
 		}
 	}
 
 
 }
 ?>
-
-
-<!--SELECT idProjet, projet from Projet inner join appartientProjet using(idProjet) where idUtilisateur = 2 - SELECT idProjet, projet FROM Projet inner join appartientProjet using(idProjet) WHERE idUtilisateur = 1-->
-<!--SELECT * FROM Projet as p INNER JOIN appartientProjet as p1 using(idProjet) LEFT JOIN appartientProjet as p2 ON p1.idUtilisateur != p2.idUtilisateur and p1.idProjet = p2.idProjet where p1.idProjet = 2 and p2.idProjet is null -->
-
-<!--select DISTINCT Projet.idProjet, Projet.projet from Projet INNER JOIN appartientProjet as p USING(idProjet) JOIN Utilisateur ON p.idUtilisateur != Utilisateur.idUtilisateur LEFT JOIN appartientProjet as p1 ON p1.idUtilisateur = 4 AND p.idProjet = p1.idProjet WHERE p.idUtilisateur = 2 and Utilisateur.idUtilisateur = 4 -->

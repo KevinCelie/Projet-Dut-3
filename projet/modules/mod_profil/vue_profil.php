@@ -111,7 +111,9 @@ Class Vue_Profil{
                   echo "</div>";
                echo "</div>";
             echo "</div>";
+            if($_SESSION['login'] == $line['idUtilisateur']){
                echo "<a href='index.php?module=profil&action=modifier' id='modifierProfilButton'>Modifier Profil</a>";
+            }
          echo "</div>" ;
 
          /*Notif des amis*/
@@ -132,6 +134,8 @@ Class Vue_Profil{
    }
 
    public function modifProfil($req, $musique, $langage){
+      $tokenVerif = crypt(rand(0,999),"token");
+      $_SESSION['tokenVerif'] = $tokenVerif;
       $champNom = array("Nom","Prenom", "Âge", "Description","Sexe");
       echo "<div class='row'>";
       $champId = array("champNom", "champPrenom", "champAge", "champDesc", "champSexe");
@@ -140,6 +144,7 @@ Class Vue_Profil{
             $i = 0;
             $info = $req -> fetch();
             echo "<form method='post' action='index.php?module=profil&action=updateProfil' id='updateProfil' enctype='multipart/form-data'>";
+               echo "<input value ='".$tokenVerif."' type='hidden' name='tokenVerif'/>";
                while($i < 5){
                   if($champNom[$i] == "Sexe"){
                      echo "<div class = 'form-group'>";
