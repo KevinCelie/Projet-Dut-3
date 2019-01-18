@@ -275,7 +275,7 @@ Class Vue_Agenda{
                     Description :
                 </label>
                 <div class='col-sm-3'>
-                    <textarea type='text' class='form-control' id='champDesc' name='champDesc' value='".$event['description']."' placeholder='".$event['description']."'/>
+                    <textarea type='text' class='form-control' id='champDesc' name='champDesc'>".$event['description']."</textarea>
                 </div>
             </div>
 

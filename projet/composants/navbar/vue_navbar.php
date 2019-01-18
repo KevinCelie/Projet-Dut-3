@@ -69,7 +69,7 @@ Class Vue_Navbar{
             echo "
                         <div class='dropdown-divider'>
                         </div>
-                        <a class='dropdown-item' href='index.php?module=projet'>Créer une nouvelle quêtes</a>
+                        <a class='dropdown-item' href='index.php?module=projet'>Créer une nouvelle quête</a>
                     </div>
                 </li>";
         }
