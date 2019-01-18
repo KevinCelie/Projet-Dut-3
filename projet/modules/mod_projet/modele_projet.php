@@ -39,7 +39,7 @@ Class Modele_Projet extends BDD{
             $titre = htmlspecialchars($_POST['champProjet']);
             $desc = htmlspecialchars($_POST['champDesc']);
             $prive = ($_POST['champPrive']==true)?1:0;
-            $git = null;
+            $git = "";
 
             $req = self::$DBH -> prepare("insert into Projet values (DEFAULT, ?, ?, ?, NULL)");
             $req -> execute(array($titre, $desc, $prive));
@@ -52,7 +52,6 @@ Class Modele_Projet extends BDD{
 
                 $req3 = self::$DBH -> prepare("insert into appartientProjet values (?,?,True, False)");
                 $req3 -> execute(array($line['idProjet'], $_SESSION['login']));
-
                 if($req3 == true) {
                     echo "reussi";
                     return $line['idProjet'];
@@ -68,6 +67,17 @@ Class Modele_Projet extends BDD{
 
         }
     }
+    
+    public function modificationProjet() {
+        $titre = htmlspecialchars($_POST['champProjet']);
+        $desc = htmlspecialchars($_POST['champDesc']);
+        $prive = ($_POST['champPrive']==true)?1:0;
+        $git = htmlspecialchars($_POST['champGit']);
+        $idProjet = htmlspecialchars($_POST['champId']);
+        $req = self::$DBH -> prepare("update Projet set projet=?, projetDescription=?, estPrive=?, lienGitHub=? where idProjet=?");
+        $req->execute(array($titre,$desc,$prive,$git,$idProjet));
+    }
+    
     public function invite($projet, $profil){
         $req = self::$DBH -> prepare("insert into appartientProjet values (?,?,False, True)");
         $req -> execute(array($projet,$profil));

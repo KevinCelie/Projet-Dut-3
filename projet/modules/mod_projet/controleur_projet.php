@@ -36,7 +36,14 @@ Class Controleur_Projet{
                 $id = $this -> modele -> creation_quete();
                 header("Location:index.php?module=projet&action=affiche&projet=$id");
                 break;
-
+            case "formulaireModif":
+                $infoProjet = $this -> modele -> getProjet($_GET['projet']);
+                $this -> vue -> formulaireModif($infoProjet);
+                break;
+            case "modification":
+                $this->modele->modificationProjet();
+                header("Location:index.php?module=projet&action=affiche&projet=".$_POST['champId']);
+                break;
             case "invite":
                 if(isset($_GET['profil']) && isset($_GET['projet'])){
                     $this -> modele -> invite($_GET['projet'],$_GET['profil']);
@@ -58,12 +65,6 @@ Class Controleur_Projet{
                 break;
 
         }
-
-        // if(isset($_GET['action'])){
-        // 	$action = htmlspecialchars($_GET['action']);
-        // }else {
-        // 	$action = 'menu';
-        // }
     }
 
     private function affiche_projet($id){
