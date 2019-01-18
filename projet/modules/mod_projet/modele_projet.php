@@ -26,6 +26,17 @@ Class Modele_Projet extends BDD{
         $req -> execute(array($idProjet));
         return $req;
     }
+    
+    public function estMembre(){
+        $req = $this -> getMembres($_GET['projet']);
+        while(($membre = $req -> fetch()) !== false){
+            if($membre['idUtilisateur'] == $_SESSION['login'])
+                return true;
+        }
+        return false;
+            
+        
+    }
 
 
 

@@ -23,9 +23,10 @@ Class Controleur_Projet{
             case "affiche":
                 if(isset($_GET['projet'])) {
                     $projet = $this -> modele -> getProjet($_GET['projet']);
+                    $estMembre = $this->modele->estMembre();
                     if($projet != null) {
                         $membre = $this -> modele -> getMembres($_GET['projet']); 
-                        $this -> vue -> affiche_projet($projet, $membre);
+                        $this -> vue -> affiche_projet($projet, $membre,$estMembre);
                         break;
                     }
                 }

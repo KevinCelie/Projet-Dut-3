@@ -18,33 +18,7 @@ Class Vue_Agenda{
             Supprimer un évènement
         </button>
 
-        <script type='text/javascript'>
-        $(document).ready(function(){
-            $('#ajoutEvent').click(function(){
-                idProjet = $('#divAjoutEvent').attr('projet');
-                $.get('ajax_Agenda.php?action=formulaire_ajout&projet=1').done(function(resultat){
-                    $('#divAjoutEvent').html(resultat);        
-                });
-            });
-        });
-        $(document).ready(function(){
-            $('#modifEvent').click(function(){
-                idProjet = $('#divAjoutEvent').attr('projet');
-                $.get('ajax_Agenda.php?action=demande_modif&projet=1').done(function(resultat){
-                    $('#divAjoutEvent').html(resultat);        
-                });
-            });
-        });
-        $(document).ready(function(){
-            $('#suppEvent').click(function(){
-                idProjet = $('#divAjoutEvent').attr('projet');
-                $.get('ajax_Agenda.php?action=formulaire_supp&projet=1').done(function(resultat){
-                    $('#divAjoutEvent').html(resultat);        
-                });
-            });
-        });
-
-        </script>
+        <script type='text/javascript' src='script/boutonAgenda.js'></script>
         ";
     }
     public function afficheBoutonRetour(){
@@ -275,7 +249,7 @@ Class Vue_Agenda{
                     Description :
                 </label>
                 <div class='col-sm-3'>
-                    <textarea type='text' class='form-control' id='champDesc' name='champDesc'>".$event['description']."</textarea>
+                    <textarea type='text' class='form-control' id='champDesc' name='champDesc' >".$event['description']."</textarea>
                 </div>
             </div>
 

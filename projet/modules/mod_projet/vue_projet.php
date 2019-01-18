@@ -3,7 +3,7 @@ Class Vue_Projet{
     public function __construct () {
     }
 
-    public function affiche_projet($reqProjet, $membreProjet){
+    public function affiche_projet($reqProjet, $membreProjet, $estMembre){
 
         echo "
 
@@ -20,7 +20,7 @@ Class Vue_Projet{
                 <div class='card-body'>
                 ";
 
-        $this -> affiche_profil_projet($reqProjet, $membreProjet);
+        $this -> affiche_profil_projet($reqProjet, $membreProjet, $estMembre);
 
         echo "
                 </div>
@@ -52,7 +52,7 @@ Class Vue_Projet{
 
     }
 
-    private function affiche_profil_projet($reqProjet, $membreProjet){
+    private function affiche_profil_projet($reqProjet, $membreProjet, $estMembre){
         $projet = $reqProjet -> fetch();
 
         echo "        
@@ -88,9 +88,12 @@ Class Vue_Projet{
         echo"
                 </div>
             </div>
-        </div>
+        </div>"; 
+        if($estMembre){
+            echo"
         <a href='index.php?module=projet&action=formulaireModif&projet=".$projet['idProjet']."'><button class='btn btn-primary'>Modifier Quête</button></a>
         ";
+        }
     }
 
     /*redirige vers module -> projet et action -> creation*/
@@ -153,7 +156,7 @@ Class Vue_Projet{
                     </textarea>
                 </div>
             </div>
-            
+
             <div class='form-group row'>
                 <label for='champGit' class='col-sm-3 col-form-label'> Lien GitHub </label>
                 <div class='col-sm-9'>
@@ -167,9 +170,9 @@ Class Vue_Projet{
                     <div class='col-sm-9'>
                         <div class='form-check'>
                             <input class='form-check-input' type='radio' name='champPrive' id='gridRadios1' value='True' ";
-            if($projet['estPrive'] == 1)
-                echo"checked";
-            echo"
+        if($projet['estPrive'] == 1)
+            echo"checked";
+        echo"
                             >
                             <label class='form-check-label' for='gridRadios1'>
                                 Secrète
@@ -178,10 +181,10 @@ Class Vue_Projet{
                         <div class='form-check'>
                             <input class='form-check-input' type='radio' name='champPrive' id='gridRadios2' value='False'
                             ";
-        
+
         if($projet['estPrive'] == 0)
-                echo"checked";
-            echo"
+            echo"checked";
+        echo"
                             >
                             <label class='form-check-label' for='gridRadios2'>
                                 Public
