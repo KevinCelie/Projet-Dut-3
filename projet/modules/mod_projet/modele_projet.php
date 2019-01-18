@@ -52,7 +52,6 @@ Class Modele_Projet extends BDD{
 
                 $req3 = self::$DBH -> prepare("insert into appartientProjet values (?,?,True, False)");
                 $req3 -> execute(array($line['idProjet'], $_SESSION['login']));
-
                 if($req3 == true) {
                     echo "reussi";
                     return $line['idProjet'];
