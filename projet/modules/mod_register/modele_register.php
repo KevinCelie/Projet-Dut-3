@@ -17,22 +17,33 @@ Class Modele_Register extends BDD{
 			$username = $_POST['id'];
 			$password = crypt($_POST['mdp'], "admin");
 
-			$req = self::$DBH -> prepare("insert into Identification values(DEFAULT, ?, ?, NULL)");
-			$req -> execute(array($username, $password));
+			$reqVerif = self::$DBH -> prepare ("select idUtilisateur from Identification where adresseMail=?");
+			$reqVerif -> execute(array($username));
+			$line = $reqVerif -> fetch();
+			if($reqVerif->rowCount()==0){
 
-			if ($req == true) {
-				$req1 = self::$DBH -> prepare ("select idUtilisateur from Identification where adresseMail=?");
 
-				$req1 -> execute(array($username));
-				$test1 = $req1 -> fetch();
+				$req = self::$DBH -> prepare("insert into Identification values(DEFAULT, ?, ?, NULL)");
+				$req -> execute(array($username, $password));
 
-				$_SESSION['login'] = $test1['idUtilisateur'];
+				if ($req == true) {
+					$req1 = self::$DBH -> prepare ("select idUtilisateur from Identification where adresseMail=?");
+
+					$req1 -> execute(array($username));
+					$test1 = $req1 -> fetch();
+
+					$_SESSION['login'] = $test1['idUtilisateur'];
+					return true;
+				}else{
+					echo "Erreur login déja utilisé";
+				}
 			}else{
 				echo "Erreur login déja utilisé";
 			}
 		}else{
 			echo "Veuillez verifier les champs";
 		}
+		return false;
 	}
 	public function registerInfoSuppBD() {
 		if (isset($_POST['champNom']) 

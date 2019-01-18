@@ -73,7 +73,7 @@ Class Modele_Projet extends BDD{
         $desc = htmlspecialchars($_POST['champDesc']);
         $prive = ($_POST['champPrive']==true)?1:0;
         $git = htmlspecialchars($_POST['champGit']);
-        $idProjet = htmlspecialchars($_POST['champId']);
+        $idProjet = htmlspecialchars($_SESSION['idProjet']);
         $req = self::$DBH -> prepare("update Projet set projet=?, projetDescription=?, estPrive=?, lienGitHub=? where idProjet=?");
         $req->execute(array($titre,$desc,$prive,$git,$idProjet));
     }

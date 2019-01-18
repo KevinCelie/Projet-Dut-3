@@ -232,6 +232,8 @@ Class Vue_Agenda{
 
     public function afficheFormulaireModif($reqAgenda){
         $event = $reqAgenda->fetch();
+        $tokenVerif = crypt(rand(0,999),"token");
+        $_SESSION['tokenVerif'] = $tokenVerif;
         echo "
 
             <div class='form-group row'>
@@ -281,6 +283,7 @@ Class Vue_Agenda{
 
             <input type='hidden' name='champProjet' id='champProjet' value='".$_GET['projet']."'/>
             <input type='hidden' name='champCalendrier' id='champCalendrier' value='".$event['idCalendrier']."'/>
+            <input type='hidden' name='verifToken' value='".$tokenVerif."'/> 
 
             <button type='valider' class='btn btn-primary' id='valideModif'>Valider</button>
 

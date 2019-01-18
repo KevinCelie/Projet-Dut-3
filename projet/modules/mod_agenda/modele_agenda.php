@@ -28,8 +28,10 @@ Class Modele_Agenda extends BDD{
         $req3 -> execute(array($projet, $line['idCalendrier']));
     }
     public function modifierEvent(){
-        $req = BDD::$DBH -> prepare("update Evenement set dateDebut=?, dateFin=?, heureDebut=?, heureFin=?, description=? where idCalendrier=?");
-        $req -> execute(array($_POST['champDateDebut'],$_POST['champDateFin'],$_POST['champHeureDebut'],$_POST['champHeureFin'],htmlspecialchars($_POST['champDesc']),$_POST['champCalendrier']));
+        if($_SESSION['verifToken'] == $_POST['verifToken']){
+            $req = BDD::$DBH -> prepare("update Evenement set dateDebut=?, dateFin=?, heureDebut=?, heureFin=?, description=? where idCalendrier=?");
+            $req -> execute(array($_POST['champDateDebut'],$_POST['champDateFin'],$_POST['champHeureDebut'],$_POST['champHeureFin'],htmlspecialchars($_POST['champDesc']),$_POST['champCalendrier']));
+        }
     }
 
     public function suppEvent($projet){

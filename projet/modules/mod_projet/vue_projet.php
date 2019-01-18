@@ -137,6 +137,7 @@ Class Vue_Projet{
 
     public function formulaireModif($infoProjet) {
         $projet = $infoProjet->fetch();
+        $_SESSION['idProjet']=$projet['idProjet'];
         echo "
         <form method='post' action='index.php?module=projet&action=modification'>
             <div class='form-group row'>
@@ -190,7 +191,6 @@ Class Vue_Projet{
                     </div>
                 </div>
             </fieldset>
-            <input type='hidden' name='champId' id='champId' value='".$projet['idProjet']."'>
             <button type='submit' class='btn btn-primary'>Valider</button>
         </form>
         ";

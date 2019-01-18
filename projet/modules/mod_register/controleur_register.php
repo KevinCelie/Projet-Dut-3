@@ -13,8 +13,11 @@ Class Controleur_Register{
 	}
 
 	public function register() {
-	    $this -> modele -> registerBD();
-	   header('Location: index.php?module=register');
+	   $result = $this -> modele -> registerBD();
+     if($result==true){
+	     header('Location: index.php?module=register');
+      }
+      header('Location: index.php');
     }
     public function registerInfoSupp() {
       $this -> modele -> registerInfoSuppBD();
